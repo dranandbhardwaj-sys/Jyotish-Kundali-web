@@ -1,0 +1,1122 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jyotish Kundali | मुफ़्त वैदिक जन्म कुंडली, पंचांग और विवाह मिलान</title>
+<meta property="og:title" content="Jyotish Kundali">
+<meta property="og:description" content="मुफ़्त वैदिक जन्म कुंडली, नवांश, महादशा, विवाह मिलान, पंचांग, त्योहार और मुहूर्त।">
+<meta property="og:type" content="website">
+<meta name="description" content="Jyotish Kundali: muft Vedic janam kundali, navamsa, mahadasha, gochar, vivah milan, panchang, muhurta, rashifal aur jyotish calculators. Dr. Anand Bhardwaj.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600&family=Tiro+Devanagari+Hindi&display=swap">
+<script src="https://cdn.jsdelivr.net/npm/astronomy-engine@2.1.19/astronomy.browser.min.js"></script>
+<style>
+/* Layout: tool-site shell. Header with menu panel, then stacked tool panels (kundali, milan, panchang with sub-tools, calculators), guidance, FAQ and contact. */
+:root{
+  --bg:#f2f2f8; --surface:#ffffff; --fg:#1c1f4a; --muted:#565a86; --line:#cfd1e6;
+  --accent:#b86e00; --accent-fg:#ffffff; --chart:#1c1f4a; --planet:#a3261c; --tint:#e8e9f6; --ok:#1f6b45;
+  --display:"Tiro Devanagari Hindi","Noto Serif Devanagari",Georgia,serif;
+  --body:"Hind","Noto Sans Devanagari",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#14163a; --surface:#1d2050; --fg:#eceefb; --muted:#aab0dc; --line:#343878;
+  --accent:#f2b134; --accent-fg:#14163a; --chart:#eceefb; --planet:#ff9a8a; --tint:#262a63; --ok:#7fd1a4; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#14163a; --surface:#1d2050; --fg:#eceefb; --muted:#aab0dc; --line:#343878;
+  --accent:#f2b134; --accent-fg:#14163a; --chart:#eceefb; --planet:#ff9a8a; --tint:#262a63; --ok:#7fd1a4; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0}
+.wrap{max-width:1040px;margin:0 auto}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.25;text-wrap:balance;margin:0}
+.label{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600}
+a{color:var(--accent)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+header.top{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
+.brand{font-family:var(--display);font-size:24px;text-decoration:none;color:var(--fg)}
+.menubtn{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--fg);border:1.5px solid var(--line);border-radius:6px;padding:8px 12px;font:500 15px var(--body);cursor:pointer;margin-left:auto}
+#menu{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px 20px 14px;margin-top:10px}
+#menu h3{font-size:15px;color:var(--accent);font-family:var(--body);font-weight:600;padding:14px 0 6px;border-bottom:1px solid var(--line);margin-bottom:4px}
+#menu ul{list-style:none;margin:0;padding:0;columns:2 240px;column-gap:28px}
+#menu li{padding:7px 0;break-inside:avoid}
+#menu a{text-decoration:none;color:var(--fg)}
+#menu a:hover{color:var(--accent)}
+.intro{padding:36px 0 20px;max-width:46em}
+h1{font-size:clamp(30px,5.5vw,48px)}
+.intro p{color:var(--muted);margin:14px 0 0}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:22px;margin-top:20px}
+.panel h2{font-size:24px;margin-bottom:6px}
+.hint{font-size:14px;color:var(--muted);margin:0 0 16px}
+form{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px 16px}
+label{display:flex;flex-direction:column;gap:4px;font-size:14px;color:var(--muted);min-width:0}
+input,select{font:16px var(--body);color:var(--fg);background:var(--bg);border:1.5px solid var(--line);border-radius:6px;padding:10px 12px;width:100%;min-width:0}
+.go{grid-column:1/-1;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.btn{background:var(--accent);color:var(--accent-fg);border:0;border-radius:6px;padding:12px 26px;font:600 16px var(--body);cursor:pointer}
+.tag{font-size:12px;color:var(--ok);border:1px solid var(--ok);border-radius:10px;padding:1px 10px}
+.summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:0 0 20px}
+.summary.two{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.summary div{background:var(--tint);border-radius:8px;padding:10px 14px;min-width:0}
+.summary small{display:block;font-size:12px;color:var(--muted);letter-spacing:.06em}
+.summary b{font-family:var(--display);font-weight:400;font-size:20px}
+.seg{display:flex;gap:8px;margin:0 0 14px;flex-wrap:wrap}
+.seg button{background:transparent;color:var(--fg);border:1.5px solid var(--line);border-radius:6px;padding:6px 16px;font:500 15px var(--body);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
+.charts{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.charts figure{margin:0;min-width:0}
+.charts svg{display:block;width:100%;height:auto;max-width:420px;margin:0 auto}
+.charts figcaption{text-align:center;font-size:14px;color:var(--muted);padding-top:6px}
+.tw{overflow-x:auto;margin-top:8px}
+table{border-collapse:collapse;width:100%;font-size:15px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font-size:12px;letter-spacing:.08em;color:var(--muted);font-weight:600;text-transform:uppercase}
+tr.now td{background:var(--tint);font-weight:600}
+h3.sub{font-size:20px;margin:28px 0 4px}
+section.info{padding:40px 0 8px}
+section.info h2{font-size:clamp(24px,4vw,32px);margin:8px 0 18px}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px 32px}
+.cols>div{min-width:0}
+.cols h3{font-size:19px;margin-bottom:4px}
+.cols p{margin:0;color:var(--muted)}
+.note{border-left:4px solid var(--accent);background:var(--tint);padding:14px 18px;border-radius:0 8px 8px 0}
+details{border-bottom:1px solid var(--line);padding:12px 0}
+summary{cursor:pointer;font-weight:600}
+details p{margin:8px 0 0;color:var(--muted)}
+.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+.row b{min-width:84px;color:var(--muted);font-weight:500}
+.row2{display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap;margin:8px 0}
+.row2 label{flex:1 1 160px}
+.val{font-weight:600;user-select:all;overflow-wrap:anywhere}
+.copy{background:transparent;color:var(--accent);border:1.5px solid var(--line);border-radius:6px;padding:4px 12px;font:500 14px var(--body);cursor:pointer}
+.dos p{margin:8px 0;color:var(--muted)}
+.dos b{color:var(--fg)}
+.qg{color:var(--ok);font-weight:600}
+.qb{color:var(--planet)}
+.rcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin-top:10px}
+.rc{background:var(--tint);border-radius:8px;padding:12px 14px;min-width:0}
+.rc b{font-family:var(--display);font-weight:400;font-size:19px}
+.rc small{margin-left:8px}
+.rc p{margin:4px 0 0;color:var(--muted);font-size:15px}
+footer{margin-top:40px;padding:24px 0 40px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
+#err,.err{color:var(--planet);font-weight:600}
+body{margin:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="#top">ज्योतिष कुंडली</a>
+    <button class="menubtn" id="mb" type="button" aria-expanded="false" aria-controls="menu">
+      <svg width="18" height="14" viewBox="0 0 18 14" aria-hidden="true"><path d="M0 1h18M0 7h18M0 13h18" stroke="currentColor" stroke-width="2"/></svg>मेनू
+    </button>
+  </header>
+
+  <nav id="menu" hidden aria-label="मुख्य मेनू">
+    <h3>कुंडली और मिलान</h3>
+    <ul>
+      <li><a href="#kundali">जन्म कुंडली</a></li>
+      <li><a href="#kundali">नवांश कुंडली (D9)</a></li>
+      <li><a href="#bhava">भाव विवरण</a></li>
+      <li><a href="#dasha">विंशोत्तरी महादशा</a></li>
+      <li><a href="#gochar">आज का गोचर</a></li>
+      <li><a href="#milan">विवाह मिलान (अष्टकूट)</a></li>
+      <li><a href="#mangal">मंगल दोष, काल सर्प, साढ़े साती</a></li>
+      <li><a href="#ratna">रत्न और रुद्राक्ष</a></li>
+    </ul>
+    <h3>पंचांग और मुहूर्त</h3>
+    <ul>
+      <li><a href="#panchang">आज का पंचांग</a></li>
+      <li><a href="#rahukaal">राहु काल, यमगंड, गुलिक</a></li>
+      <li><a href="#hora">होरा</a></li>
+      <li><a href="#choghadiya">चौघड़िया</a></li>
+      <li><a href="#muhurta">शुभ मुहूर्त</a></li>
+      <li><a href="#vedic">वैदिक समय</a></li>
+      <li><a href="#shubhyog">शुभ योग और पंचक</a></li>
+      <li><a href="#udaylagna">उदय लग्न</a></li>
+      <li><a href="#jain">जैन पच्चक्खाण</a></li>
+      <li><a href="#rashifal">आज का राशिफल</a></li>
+    </ul>
+    <h3>व्रत और श्राद्ध</h3>
+    <ul>
+      <li><a href="#vrat">एकादशी, पूर्णिमा, अमावस्या, प्रदोष</a></li>
+      <li><a href="#vrat">संकष्टी, शिवरात्रि, दुर्गाष्टमी</a></li>
+      <li><a href="#shraddh">श्राद्ध तिथि</a></li>
+      <li><a href="#tyohar">आगामी त्योहार</a></li>
+      <li><a href="#pitru">पितृ पक्ष</a></li>
+      <li><a href="#sankranti">मासिक संक्रांति</a></li>
+    </ul>
+    <h3>नवग्रह और खगोल</h3>
+    <ul>
+      <li><a href="#graha">ग्रह स्थिति, अस्त और वक्री</a></li>
+      <li><a href="#grahaghatna">आगामी ग्रह घटनाएँ</a></li>
+      <li><a href="#grahan">सूर्य और चंद्र ग्रहण</a></li>
+      <li><a href="#ritu">ऋतु और अयनकाल</a></li>
+      <li><a href="#mantra">नवग्रह बीज मंत्र</a></li>
+    </ul>
+    <h3>कैलकुलेटर</h3>
+    <ul>
+      <li><a href="#kundali">प्रश्न कुंडली</a></li>
+      <li><a href="#calc">जन्म लग्न, मंगल दोष, काल सर्प</a></li>
+      <li><a href="#calc">जन्म राशि और नक्षत्र</a></li>
+      <li><a href="#calc">नाम अक्षर (शिशु नामकरण)</a></li>
+      <li><a href="#calc">साढ़े साती कैलकुलेटर</a></li>
+      <li><a href="#calc">सहस्र चंद्रोदय</a></li>
+    </ul>
+    <h3>सशुल्क सेवाएँ</h3>
+    <ul>
+      <li><a href="#sampark">संपूर्ण कुंडली रिपोर्ट (PDF)</a></li>
+      <li><a href="#sampark">व्यक्तिगत परामर्श</a></li>
+    </ul>
+  </nav>
+
+  <div class="intro" id="top">
+    <span class="label">वैदिक ज्योतिष · Free Janam Kundali</span>
+    <h1>मुफ़्त वैदिक जन्म कुंडली</h1>
+    <p>जन्म तिथि, समय और स्थान डालें। कुंडली, नवांश, ग्रह और भाव विवरण, महादशा, गोचर, दोष, रत्न, विवाह मिलान, पंचांग और मुहूर्त एक ही साइट पर।</p>
+  </div>
+
+  <div class="panel" id="kundali">
+    <h2>जन्म विवरण भरें</h2>
+    <p class="hint">समय वही डालें जो स्थानीय घड़ी में दर्ज था। UTC में न बदलें। अभी उदाहरण विवरण भरा है। प्रश्न कुंडली अभी के समय और चुने शहर से बनती है।</p>
+    <form id="f">
+      <label for="nm">नाम<input id="nm" value="उदाहरण"></label>
+      <label for="dt">जन्म तिथि<input id="dt" type="date" value="1990-08-15" required></label>
+      <label for="tm">जन्म समय<input id="tm" type="time" value="10:30" required></label>
+      <label for="city">शहर<select id="city"></select></label>
+      <label for="lat">अक्षांश (उत्तर +)<input id="lat" type="number" step="0.0001" value="28.6139" required></label>
+      <label for="lon">देशांतर (पूर्व +)<input id="lon" type="number" step="0.0001" value="77.2090" required></label>
+      <label for="tz">समय क्षेत्र (UTC से घंटे)<input id="tz" type="number" step="0.25" value="5.5" required></label>
+      <div class="go"><button class="btn" type="submit">कुंडली देखें</button><button class="btn" type="button" id="qk" style="background:transparent;color:var(--accent);border:1.5px solid var(--accent)">प्रश्न कुंडली (अभी)</button><span class="tag">लाहिरी अयनांश · माध्य राहु · पूर्ण राशि भाव</span><span id="err"></span></div>
+    </form>
+  </div>
+
+  <div class="panel" id="out" hidden>
+    <h2 id="ttl">कुंडली</h2>
+    <p class="hint" id="meta"></p>
+    <div class="summary" id="sum"></div>
+    <div class="seg" role="group" aria-label="कुंडली शैली">
+      <button type="button" data-s="N" aria-pressed="true">उत्तर भारतीय</button>
+      <button type="button" data-s="S" aria-pressed="false">दक्षिण भारतीय</button>
+    </div>
+    <div class="charts">
+      <figure><div id="c1"></div><figcaption>लग्न कुंडली (D1)</figcaption></figure>
+      <figure><div id="c9"></div><figcaption>नवांश कुंडली (D9)</figcaption></figure>
+    </div>
+    <h3 class="sub">ग्रहों का विवरण</h3>
+    <div class="tw"><table id="tpl"></table></div>
+    <h3 class="sub" id="bhava">भावों का विवरण</h3>
+    <div class="tw"><table id="tbh"></table></div>
+    <h3 class="sub" id="dasha">विंशोत्तरी महादशा</h3>
+    <p class="hint">जन्म के समय चंद्र नक्षत्र से गणना। रंगीन पंक्ति आज चल रही महादशा है।</p>
+    <div class="tw"><table id="tds"></table></div>
+    <h3 class="sub" id="gochar">आज का गोचर</h3>
+    <p class="hint" id="gmeta"></p>
+    <div class="tw"><table id="tgo"></table></div>
+    <h3 class="sub" id="mangal">योग और दोष</h3>
+    <div class="dos" id="dos"></div>
+    <h3 class="sub" id="ratna">रत्न और रुद्राक्ष</h3>
+    <p class="hint">परंपरा के अनुसार लग्नेश, पंचमेश और नवमेश के रत्न। रत्न पहनने से पहले ज्योतिषी से कुंडली दिखवाएँ।</p>
+    <div class="tw"><table id="trt"></table></div>
+    <div class="dos" id="rud"></div>
+  </div>
+
+  <div class="panel" id="milan">
+    <h2>विवाह मिलान (अष्टकूट गुण)</h2>
+    <p class="hint">वर और वधू का जन्म विवरण भरें। गणना चंद्र राशि और नक्षत्र से होती है, इसलिए स्थान की ज़रूरत नहीं। अभी उदाहरण विवरण भरा है।</p>
+    <form id="fm">
+      <label for="bn">वर का नाम<input id="bn" value="वर"></label>
+      <label for="bd">वर की जन्म तिथि<input id="bd" type="date" value="1990-08-15" required></label>
+      <label for="bt">वर का जन्म समय<input id="bt" type="time" value="10:30" required></label>
+      <label for="gn">वधू का नाम<input id="gn" value="वधू"></label>
+      <label for="gd">वधू की जन्म तिथि<input id="gd" type="date" value="1992-03-10" required></label>
+      <label for="gt">वधू का जन्म समय<input id="gt" type="time" value="06:15" required></label>
+      <label for="mtz">समय क्षेत्र (UTC से घंटे)<input id="mtz" type="number" step="0.25" value="5.5" required></label>
+      <div class="go"><button class="btn" type="submit">मिलान देखें</button><span class="err" id="merr"></span></div>
+    </form>
+    <div id="mout" hidden>
+      <div class="summary" id="msum" style="margin-top:20px"></div>
+      <div class="tw"><table id="mtb"></table></div>
+      <p class="note" id="mver" style="margin-top:16px"></p>
+    </div>
+  </div>
+
+  <div class="panel" id="panchang">
+    <h2>पंचांग, मुहूर्त और राशिफल</h2>
+    <p class="hint">तारीख और शहर चुनें। तिथि, नक्षत्र, योग और करण सूर्योदय के समय के हैं। समय आपके चुने समय क्षेत्र में दिखेंगे। यही स्थान व्रत और श्राद्ध खोज में भी लगेगा।</p>
+    <form id="fp">
+      <label for="pd">तारीख<input id="pd" type="date" required></label>
+      <label for="pcity">शहर<select id="pcity"></select></label>
+      <label for="plat">अक्षांश (उत्तर +)<input id="plat" type="number" step="0.0001" value="28.6139" required></label>
+      <label for="plon">देशांतर (पूर्व +)<input id="plon" type="number" step="0.0001" value="77.2090" required></label>
+      <label for="ptz">समय क्षेत्र (UTC से घंटे)<input id="ptz" type="number" step="0.25" value="5.5" required></label>
+      <div class="go"><button class="btn" type="submit">पंचांग देखें</button><span class="err" id="perr"></span></div>
+    </form>
+    <div id="pout" hidden>
+      <div class="summary" id="psum" style="margin-top:20px"></div>
+      <h3 class="sub">पंचांग</h3>
+      <div class="tw"><table id="tpn"></table></div>
+      <h3 class="sub" id="rahukaal">राहु काल, यमगंड और गुलिक</h3>
+      <p class="hint">इन समयों में नया शुभ कार्य आरंभ करना परंपरा में टाला जाता है।</p>
+      <div class="tw"><table id="trk"></table></div>
+      <h3 class="sub" id="muhurta">शुभ मुहूर्त</h3>
+      <div class="tw"><table id="tmu"></table></div>
+      <h3 class="sub" id="hora">होरा</h3>
+      <p class="hint">हरे रंग के होरा (गुरु, शुक्र, बुध, चंद्र) शुभ कार्यों के लिए अच्छे माने जाते हैं।</p>
+      <div class="tw"><table id="tho"></table></div>
+      <h3 class="sub" id="choghadiya">चौघड़िया</h3>
+      <div class="tw"><table id="tch"></table></div>
+      <h3 class="sub" id="shubhyog">शुभ योग और पंचक</h3>
+      <p class="hint">सर्वार्थ सिद्धि और अमृत सिद्धि योग वार और नक्षत्र के मेल से बनते हैं। पंचक में चंद्र धनिष्ठा के उत्तरार्ध से रेवती तक रहता है।</p>
+      <div class="tw"><table id="tsy"></table></div>
+      <h3 class="sub" id="udaylagna">उदय लग्न</h3>
+      <p class="hint">आज सूर्योदय से अगले सूर्योदय तक हर लग्न कितनी देर रहेगा।</p>
+      <div class="tw"><table id="tul"></table></div>
+      <h3 class="sub" id="jain">जैन पच्चक्खाण</h3>
+      <div class="tw"><table id="tjn"></table></div>
+      <h3 class="sub" id="rashifal">राशिफल</h3>
+      <p class="hint" id="rmeta"></p>
+      <div class="rcards" id="rcards"></div>
+      <h3 class="sub" id="vedic">वैदिक समय (अभी)</h3>
+      <p class="hint">सूर्योदय से सूर्यास्त तक 30 घटी और सूर्यास्त से सूर्योदय तक 30 घटी, इस हिसाब से घटी : पल : विपल।</p>
+      <div class="summary" id="vsum"></div>
+      <h3 class="sub" id="vrat">व्रत और तिथि खोजक</h3>
+      <p class="hint">अगले लगभग 8 महीने की तिथियाँ। तिथि का निर्णय परंपरा के सामान्य नियम से है, पर्व से पहले स्थानीय पंचांग से मिला लें।</p>
+      <div class="row2"><label for="vt">व्रत<select id="vt"></select></label><button class="btn" id="vgo" type="button">तिथियाँ खोजें</button><span class="err" id="verr"></span></div>
+      <div class="tw"><table id="tvr"></table></div>
+      <h3 class="sub" id="tyohar">आगामी त्योहार</h3>
+      <p class="hint">अगले लगभग 13 महीने के प्रमुख त्योहार, हिंदू महीने और तिथि के नियम से गिने गए। क्षय तिथि या अधिक मास में एक दिन का अंतर संभव है, त्योहार से पहले स्थानीय पंचांग से मिला लें।</p>
+      <div class="row2"><button class="btn" id="fgo" type="button">त्योहार दोबारा गिनें</button><span class="err" id="ferr"></span></div>
+      <div class="tw"><table id="tfs"></table></div>
+      <h3 class="sub" id="pitru">पितृ पक्ष (श्राद्ध के दिन)</h3>
+      <div class="row2"><button class="btn" id="pgo" type="button">पितृ पक्ष की तिथियाँ</button><span class="err" id="pterr"></span></div>
+      <div class="tw"><table id="tpt"></table></div>
+      <h3 class="sub" id="sankranti">मासिक संक्रांति</h3>
+      <p class="hint">सूर्य के नई राशि में जाने का दिन और समय।</p>
+      <div class="row2"><button class="btn" id="kgo" type="button">संक्रांति की तारीखें</button><span class="err" id="kerr"></span></div>
+      <div class="tw"><table id="tsk"></table></div>
+      <h3 class="sub" id="shraddh">श्राद्ध तिथि</h3>
+      <p class="hint">जिनका श्राद्ध करना है, उनके देहांत की तारीख और समय डालें। वार्षिक श्राद्ध उसी हिंदू महीने की उसी तिथि पर अपराह्न में गिना जाता है।</p>
+      <div class="row2"><label for="sdt">देहांत की तारीख<input id="sdt" type="date"></label><label for="stm">समय<input id="stm" type="time" value="12:00"></label><button class="btn" id="sgo" type="button">श्राद्ध तिथि खोजें</button></div>
+      <div class="dos" id="sout"></div>
+    </div>
+  </div>
+
+  <div class="panel" id="graha">
+    <h2>नवग्रह और खगोल</h2>
+    <p class="hint">स्थान और समय क्षेत्र ऊपर पंचांग वाले फ़ॉर्म से लिए जाते हैं। ग्रहण का समय आपके स्थान के अनुसार है।</p>
+    <div class="row2"><button class="btn" id="ggo" type="button">ग्रह जानकारी देखें</button><span class="err" id="gerr"></span></div>
+    <div id="gout" hidden>
+      <h3 class="sub">ग्रह स्थिति (अभी)</h3>
+      <div class="tw"><table id="tgs"></table></div>
+      <h3 class="sub" id="grahaghatna">आगामी ग्रह घटनाएँ</h3>
+      <p class="hint">राशि प्रवेश, वक्री और मार्गी, अगले लगभग 13 महीने।</p>
+      <div class="tw"><table id="tge"></table></div>
+      <h3 class="sub" id="grahan">सूर्य और चंद्र ग्रहण</h3>
+      <div class="tw"><table id="tgr"></table></div>
+      <h3 class="sub" id="ritu">ऋतु और अयनकाल</h3>
+      <p class="hint">ऋतुएँ निरयन गणना से हैं (सूर्य की राशि के अनुसार)। अयनकाल और विषुव सायन गणना से हैं।</p>
+      <div class="tw"><table id="trt2"></table></div>
+    </div>
+    <h3 class="sub" id="mantra">नवग्रह बीज मंत्र</h3>
+    <p class="hint">जप की संख्या परंपरा में कलियुग के लिए बताई गई है। जप की विधि और संख्या गुरु या ज्योतिषी से तय करवाएँ।</p>
+    <div class="tw"><table>
+      <tr><th>ग्रह</th><th>वार</th><th>बीज मंत्र</th><th>जप संख्या</th><th>रत्न</th></tr>
+      <tr><td>सूर्य</td><td>रविवार</td><td>ॐ ह्रां ह्रीं ह्रौं सः सूर्याय नमः</td><td>7000</td><td>माणिक्य</td></tr>
+      <tr><td>चंद्र</td><td>सोमवार</td><td>ॐ श्रां श्रीं श्रौं सः चन्द्रमसे नमः</td><td>11000</td><td>मोती</td></tr>
+      <tr><td>मंगल</td><td>मंगलवार</td><td>ॐ क्रां क्रीं क्रौं सः भौमाय नमः</td><td>10000</td><td>मूंगा</td></tr>
+      <tr><td>बुध</td><td>बुधवार</td><td>ॐ ब्रां ब्रीं ब्रौं सः बुधाय नमः</td><td>9000</td><td>पन्ना</td></tr>
+      <tr><td>गुरु</td><td>गुरुवार</td><td>ॐ ग्रां ग्रीं ग्रौं सः गुरवे नमः</td><td>19000</td><td>पुखराज</td></tr>
+      <tr><td>शुक्र</td><td>शुक्रवार</td><td>ॐ द्रां द्रीं द्रौं सः शुक्राय नमः</td><td>16000</td><td>हीरा या ओपल</td></tr>
+      <tr><td>शनि</td><td>शनिवार</td><td>ॐ प्रां प्रीं प्रौं सः शनैश्चराय नमः</td><td>23000</td><td>नीलम</td></tr>
+      <tr><td>राहु</td><td>—</td><td>ॐ भ्रां भ्रीं भ्रौं सः राहवे नमः</td><td>18000</td><td>गोमेद</td></tr>
+      <tr><td>केतु</td><td>—</td><td>ॐ स्रां स्रीं स्रौं सः केतवे नमः</td><td>17000</td><td>लहसुनिया</td></tr>
+    </table></div>
+  </div>
+
+  <div class="panel" id="calc">
+    <h2>ज्योतिष कैलकुलेटर</h2>
+    <p class="hint">जन्म लग्न, जन्म राशि, नक्षत्र, नाम अक्षर, मंगल दोष, काल सर्प, साढ़े साती, आज का राशिफल और सहस्र चंद्रोदय एक साथ। अभी उदाहरण विवरण भरा है।</p>
+    <form id="fc">
+      <label for="cd">जन्म तिथि<input id="cd" type="date" value="1990-08-15" required></label>
+      <label for="ct">जन्म समय<input id="ct" type="time" value="10:30" required></label>
+      <label for="ctz">समय क्षेत्र (UTC से घंटे)<input id="ctz" type="number" step="0.25" value="5.5" required></label>
+      <label for="ccity">शहर (लग्न के लिए)<select id="ccity"></select></label>
+      <label for="clat">अक्षांश (उत्तर +)<input id="clat" type="number" step="0.0001" value="28.6139" required></label>
+      <label for="clon">देशांतर (पूर्व +)<input id="clon" type="number" step="0.0001" value="77.2090" required></label>
+      <div class="go"><button class="btn" type="submit">गणना करें</button><span class="err" id="cerr"></span></div>
+    </form>
+    <div id="cout" class="dos" style="margin-top:16px"></div>
+  </div>
+
+  <section class="info">
+    <span class="label">रिपोर्ट</span>
+    <h2>इस साइट पर क्या गिना जाता है</h2>
+    <div class="cols">
+      <div><h3>कुंडली और भाव</h3><p>लग्न, राशि, ग्रहों का नक्षत्र, उप स्वामी, भाव, दृष्टि और वक्री स्थिति, उत्तर और दक्षिण भारतीय शैली में।</p></div>
+      <div><h3>नवांश, दशा, गोचर</h3><p>D9 चार्ट, विंशोत्तरी महादशा की तिथियाँ और आज के ग्रह आपकी राशि से किस भाव में हैं।</p></div>
+      <div><h3>मिलान और दोष</h3><p>36 अंकों का अष्टकूट मिलान, मंगल दोष, काल सर्प योग और साढ़े साती।</p></div>
+      <div><h3>पंचांग और मुहूर्त</h3><p>तिथि, नक्षत्र, योग, करण, राहु काल, होरा, चौघड़िया, अभिजित मुहूर्त और वैदिक समय।</p></div>
+      <div><h3>व्रत, श्राद्ध, राशिफल</h3><p>एकादशी, पूर्णिमा, अमावस्या, प्रदोष, संकष्टी आदि की तिथियाँ, श्राद्ध तिथि और चंद्र गोचर पर आधारित राशिफल।</p></div>
+      <div><h3>नवदुर्गा, नवरात्र के नौ दिन</h3><p>शैलपुत्री, ब्रह्मचारिणी, चंद्रघंटा, कूष्मांडा, स्कंदमाता, कात्यायनी, कालरात्रि, महागौरी और सिद्धिदात्री।</p></div>
+      <div><h3>दशावतार</h3><p>मत्स्य, कूर्म, वराह, नृसिंह, वामन, परशुराम, राम, कृष्ण, बुद्ध और कल्कि। कुछ परंपराओं में सूची अलग है।</p></div>
+      <div><h3>कैलकुलेटर</h3><p>रत्न, रुद्राक्ष, नाम अक्षर, जन्म राशि और नक्षत्र, साढ़े साती काल और सहस्र चंद्रोदय।</p></div>
+    </div>
+  </section>
+
+  <section class="info">
+    <span class="label">पढ़ने का तरीका</span>
+    <h2>कुंडली को सही ढंग से पढ़ें</h2>
+    <div class="note">यह गणना पारंपरिक ज्योतिष के अध्ययन और व्यक्तिगत चिंतन के लिए है। स्वास्थ्य, कानूनी, आर्थिक या रोज़गार के फ़ैसले केवल इस रिपोर्ट के आधार पर न लें। कोई दोष अकेले अंतिम निर्णय नहीं होता। राशिफल केवल चंद्र गोचर पर आधारित सामान्य संकेत है।</div>
+  </section>
+
+  <section class="info">
+    <span class="label">सवाल-जवाब</span>
+    <h2>अक्सर पूछे जाने वाले प्रश्न</h2>
+    <details><summary>सही जन्म समय क्यों ज़रूरी है?</summary><p>लग्न लगभग हर दो घंटे में बदल जाता है। कुछ मिनट का फ़र्क भाव, नवांश और दशा के क्रम को बदल सकता है।</p></details>
+    <details><summary>जन्म समय पता न हो तो?</summary><p>दोपहर 12:00 डालने पर चंद्र राशि अक्सर ठीक रहती है, पर लग्न और भाव भरोसे लायक नहीं होंगे। माता-पिता या अस्पताल के रिकॉर्ड से समय पता करें।</p></details>
+    <details><summary>दूसरी वेबसाइट पर अलग कुंडली क्यों दिखती है?</summary><p>अयनांश, राहु-केतु (माध्य या सत्य), भाव पद्धति और समय क्षेत्र के चुनाव से कुछ कला का अंतर आ सकता है। यहाँ लाहिरी अयनांश और माध्य राहु लिया गया है।</p></details>
+    <details><summary>क्या मेरा जन्म विवरण कहीं सेव होता है?</summary><p>नहीं। गणना आपके फ़ोन या ब्राउज़र में ही होती है और कुछ भी भेजा या सहेजा नहीं जाता।</p></details>
+    <details><summary>क्या अधिक मास की गणना होती है?</summary><p>नहीं। हिंदू महीने का नाम सूर्य की राशि से तय होता है, अधिक मास के वर्ष में श्राद्ध और व्रत की तारीख एक महीना आगे-पीछे हो सकती है।</p></details>
+    <details><summary>क्या यह रिपोर्ट ज्योतिषी की सलाह की जगह ले सकती है?</summary><p>नहीं। यह गणित देती है। व्याख्या और उपाय के लिए व्यक्तिगत परामर्श लें।</p></details>
+  </section>
+
+  <section class="info" id="sampark">
+    <span class="label">संपर्क</span>
+    <h2>परामर्श और संपूर्ण कुंडली रिपोर्ट</h2>
+    <div class="panel" style="margin-top:0">
+      <div class="row"><b>ज्योतिषी</b><span class="val">डॉ. आनंद भारद्वाज</span></div>
+      <div class="row"><b>मोबाइल</b><span class="val" id="ph">9162172749</span><button class="copy" type="button" data-t="ph">कॉपी</button></div>
+      <div class="row"><b>ईमेल</b><span class="val" id="em">dranandbhardwaj@gmail.com</span><button class="copy" type="button" data-t="em">कॉपी</button></div>
+      <div class="row"><b>ऐप</b><span class="val">Android ऐप जल्द आ रहा है</span></div>
+    </div>
+  </section>
+
+  <footer>© 2026 Jyotish Kundali · डॉ. आनंद भारद्वाज · ज्योतिष परंपरा का अध्ययन है, चिकित्सा, कानूनी या वित्तीय सलाह नहीं।</footer>
+</div>
+
+<script>
+(function(){
+var RASHI=['मेष','वृषभ','मिथुन','कर्क','सिंह','कन्या','तुला','वृश्चिक','धनु','मकर','कुंभ','मीन'];
+var NAK=['अश्विनी','भरणी','कृत्तिका','रोहिणी','मृगशिरा','आर्द्रा','पुनर्वसु','पुष्य','आश्लेषा','मघा','पूर्वाफाल्गुनी','उत्तराफाल्गुनी','हस्त','चित्रा','स्वाति','विशाखा','अनुराधा','ज्येष्ठा','मूल','पूर्वाषाढ़ा','उत्तराषाढ़ा','श्रवण','धनिष्ठा','शतभिषा','पूर्वाभाद्रपद','उत्तराभाद्रपद','रेवती'];
+var PL=[{k:'Sun',n:'सूर्य',a:'सू'},{k:'Moon',n:'चंद्र',a:'चं'},{k:'Mars',n:'मंगल',a:'मं'},{k:'Mercury',n:'बुध',a:'बु'},{k:'Jupiter',n:'गुरु',a:'गु'},{k:'Venus',n:'शुक्र',a:'शु'},{k:'Saturn',n:'शनि',a:'श'}];
+var DL=['केतु','शुक्र','सूर्य','चंद्र','मंगल','राहु','गुरु','शनि','बुध'], DY=[7,20,6,10,7,18,16,19,17];
+var CITIES=[['दिल्ली',28.6139,77.2090],['मुंबई',19.0760,72.8777],['कोलकाता',22.5726,88.3639],['चेन्नई',13.0827,80.2707],['बेंगलुरु',12.9716,77.5946],['हैदराबाद',17.3850,78.4867],['पटना',25.5941,85.1376],['सहरसा',25.8750,86.5961],['लखनऊ',26.8467,80.9462],['जयपुर',26.9124,75.7873],['वाराणसी',25.3176,82.9739],['अहमदाबाद',23.0225,72.5714],['भोपाल',23.2599,77.4126],['रांची',23.3441,85.3096],['अन्य (हाथ से भरें)',null,null]];
+var AY0=23.853,SPAN=360/27;
+var LORD=[2,5,3,1,0,3,5,2,4,6,6,4];
+var FR=[[0,2,2,1,2,0,0],[2,0,1,2,1,1,1],[2,2,0,0,2,1,1],[2,0,1,0,1,2,1],[2,2,2,0,0,0,1],[0,0,1,2,1,0,2],[0,0,0,2,1,2,0]];
+var EX=[0,1,9,5,3,11,6];
+var ASP=[[6],[6],[3,6,7],[6],[4,6,8],[6],[2,6,9]];
+function $(i){return document.getElementById(i)}
+function norm(x){x%=360;return x<0?x+360:x}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function dm(x){var d=Math.floor(x),m=Math.floor((x-d)*60);return d+'° '+(m<10?'0':'')+m+'′'}
+function pad(n){return n<10?'0'+n:''+n}
+function th(a){return '<tr>'+a.map(function(x){return '<th>'+x+'</th>'}).join('')+'</tr>'}
+function tr(a,c){return '<tr'+(c?' class="'+c+'"':'')+'>'+a.map(function(x){return '<td>'+x+'</td>'}).join('')+'</tr>'}
+function fd(d){return d.toLocaleDateString('en-GB')}
+function ft(d,tz){var x=new Date((d instanceof Date?d.getTime():d)+tz*3600000);return pad(x.getUTCHours())+':'+pad(x.getUTCMinutes())}
+function fdt(d,tz,base){var x=new Date(d.getTime()+tz*3600000),s=pad(x.getUTCHours())+':'+pad(x.getUTCMinutes());return x.getUTCDate()!==base?s+' ('+pad(x.getUTCDate())+'-'+pad(x.getUTCMonth()+1)+')':s}
+function dstr(ms,tz){var x=new Date(ms+tz*3600000);return pad(x.getUTCDate())+'-'+pad(x.getUTCMonth()+1)+'-'+x.getUTCFullYear()}
+var ce0=Math.cos(23.4392911*Math.PI/180),se0=Math.sin(23.4392911*Math.PI/180);
+function sidLon(b,date){var v=Astronomy.GeoVector(b,date,true);return norm(Math.atan2(v.y*ce0+v.z*se0,v.x)*180/Math.PI-AY0)}
+function retro(b,date){var a=sidLon(b,new Date(date.getTime()-43200000)),c=sidLon(b,new Date(date.getTime()+43200000)),d=c-a;if(d>180)d-=360;if(d<-180)d+=360;return d<0}
+function deltaT(date){
+  var y=date.getUTCFullYear()+date.getUTCMonth()/12,t;
+  if(y>=2005){t=y-2005;return 62.92+0.32217*t+0.005589*t*t}
+  if(y>=1986){t=y-2000;return 63.86+0.3345*t-0.060374*t*t+0.0017275*Math.pow(t,3)+0.000651814*Math.pow(t,4)+0.00002373599*Math.pow(t,5)}
+  if(y>=1961){t=y-1975;return 45.45+1.067*t-t*t/260-Math.pow(t,3)/718}
+  return 30;
+}
+function positions(date){
+  var T=(date.getTime()/86400000+2440587.5-2451545)/36525,out=[];
+  PL.forEach(function(p){out.push({n:p.n,a:p.a,lon:sidLon(p.k,date)})});
+  var ay=AY0+1.39688783*T+0.000307*T*T;
+  var om=125.04455501-1934.13626197*T+0.0020762*T*T,rahu=norm(om-ay);
+  out.push({n:'राहु',a:'रा',lon:rahu});out.push({n:'केतु',a:'के',lon:norm(rahu+180)});
+  return {pl:out,ay:ay};
+}
+// Lagna uses sidereal time with the delta-T shift, so it matches Drik Panchang's convention.
+function lagna(date,lat,lon,ay){
+  var d=date.getTime()/86400000+2440587.5-2451545+deltaT(date)/86400,T=d/36525;
+  var gmst=280.46061837+360.98564736629*d+0.000387933*T*T;
+  var ramc=norm(gmst+lon)*Math.PI/180;
+  var eps=(23.4392911-0.0130042*T)*Math.PI/180,ph=lat*Math.PI/180;
+  var asc=Math.atan2(Math.cos(ramc),-(Math.sin(ramc)*Math.cos(eps)+Math.tan(ph)*Math.sin(eps)))*180/Math.PI;
+  return norm(norm(asc)-ay);
+}
+function nakLords(lon){
+  var n=Math.floor(lon/SPAN),off=lon-n*SPAN,i=n%9,acc=0,k,idx,w;
+  for(k=0;k<9;k++){idx=(i+k)%9;w=DY[idx]/120*SPAN;if(off<acc+w||k===8)return [DL[i],DL[idx]];acc+=w}
+}
+function dashas(moon,birth){
+  var n=Math.floor(moon/SPAN),f=(moon-n*SPAN)/SPAN,i=n%9,cur=birth.getTime(),res=[];
+  for(var k=0;k<9;k++){var idx=(i+k)%9,yrs=k===0?DY[idx]*(1-f):DY[idx],end=cur+yrs*365.25*86400000;res.push({n:DL[idx],s:new Date(cur),e:new Date(end)});cur=end}
+  return res;
+}
+// ---- charts
+var HC=[null,[200,95,200,140],[105,62,105,28],[55,105,24,105],[90,200,150,200],[55,295,24,295],[105,345,105,382],[200,305,200,262],[295,345,295,382],[345,295,376,295],[310,200,250,200],[345,105,376,105],[295,62,295,28]];
+function chartN(lagSign,planets){
+  var byH={},h;
+  planets.forEach(function(p){h=((p.sign-1-lagSign+12)%12)+1;(byH[h]=byH[h]||[]).push(p.a)});
+  var s='<svg viewBox="0 0 400 400" role="img" aria-label="उत्तर भारतीय कुंडली"><g fill="none" stroke="var(--chart)" stroke-width="2"><rect x="10" y="10" width="380" height="380"/><line x1="10" y1="10" x2="390" y2="390"/><line x1="390" y1="10" x2="10" y2="390"/><polygon points="200,10 390,200 200,390 10,200"/></g><g font-family="Hind,sans-serif" text-anchor="middle">';
+  for(var k=1;k<=12;k++){
+    var c=HC[k],sg=((lagSign+k-1)%12)+1;
+    s+='<text x="'+c[2]+'" y="'+(c[3]+5)+'" font-size="14" fill="var(--chart)" opacity=".65">'+sg+'</text>';
+    var arr=byH[k]||[],lines=[];
+    for(var i=0;i<arr.length;i+=2)lines.push(arr.slice(i,i+2).join(' '));
+    var y0=c[1]-(lines.length-1)*9+5;
+    lines.forEach(function(L,j){s+='<text x="'+c[0]+'" y="'+(y0+j*18)+'" font-size="15" font-weight="600" fill="var(--planet)">'+L+'</text>'});
+  }
+  return s+'</g></svg>';
+}
+var SPOS={11:[0,0],0:[1,0],1:[2,0],2:[3,0],3:[3,1],4:[3,2],5:[3,3],6:[2,3],7:[1,3],8:[0,3],9:[0,2],10:[0,1]};
+function chartS(lag0,planets){
+  var by={};
+  planets.forEach(function(p){(by[p.sign-1]=by[p.sign-1]||[]).push(p.a)});
+  var s='<svg viewBox="0 0 410 410" role="img" aria-label="दक्षिण भारतीय कुंडली"><g fill="none" stroke="var(--chart)" stroke-width="2">',k,c;
+  for(k=0;k<12;k++){c=SPOS[k];s+='<rect x="'+(c[0]*100+5)+'" y="'+(c[1]*100+5)+'" width="100" height="100"/>'}
+  s+='</g><g font-family="Hind,sans-serif" text-anchor="middle">';
+  for(k=0;k<12;k++){
+    c=SPOS[k];var x=c[0]*100+5,y=c[1]*100+5;
+    s+='<text x="'+(x+50)+'" y="'+(y+17)+'" font-size="12" fill="var(--chart)" opacity=".6">'+RASHI[k]+'</text>';
+    var arr=by[k]||[],lines=[];
+    for(var i=0;i<arr.length;i+=2)lines.push(arr.slice(i,i+2).join(' '));
+    var y0=y+58-(lines.length-1)*9;
+    lines.forEach(function(L,j){s+='<text x="'+(x+50)+'" y="'+(y0+j*18)+'" font-size="15" font-weight="600" fill="var(--planet)">'+L+'</text>'});
+    if(k===lag0)s+='<line x1="'+x+'" y1="'+y+'" x2="'+(x+22)+'" y2="'+y+'" stroke="var(--accent)" stroke-width="5"/><line x1="'+x+'" y1="'+y+'" x2="'+x+'" y2="'+(y+22)+'" stroke="var(--accent)" stroke-width="5"/><text x="'+(x+86)+'" y="'+(y+94)+'" font-size="13" fill="var(--accent)" font-weight="600">ल</text>';
+  }
+  return s+'</g></svg>';
+}
+var cstyle='N',last=null;
+function renderCharts(){
+  if(!last)return;
+  var f=cstyle==='N'?chartN:chartS;
+  $('c1').innerHTML=f(last.l1,last.p1);
+  $('c9').innerHTML=f(last.l9,last.p9);
+  document.querySelectorAll('.seg button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.s===cstyle))});
+}
+// ---- Kundali
+var natal=null;
+function gochar(){
+  var now=new Date(),g=positions(now).pl;
+  $('gmeta').textContent=natal?('आज '+fd(now)+' के ग्रह, आपकी चंद्र राशि ('+RASHI[natal.moonSign]+') से भाव में।'):('आज '+fd(now)+' के ग्रह।');
+  var h=th(natal?['ग्रह','राशि','अंश','चंद्र से भाव','लग्न से भाव']:['ग्रह','राशि','अंश']);
+  g.forEach(function(p){
+    var sg=Math.floor(p.lon/30),row=[p.n,RASHI[sg],dm(p.lon%30)];
+    if(natal){row.push(((sg-natal.moonSign+12)%12)+1);row.push(((sg-natal.lagSign+12)%12)+1)}
+    h+=tr(row);
+  });
+  $('tgo').innerHTML=h;
+}
+var GEM=['माणिक्य (रूबी)','मोती','मूंगा','पन्ना','पुखराज','हीरा या ओपल','नीलम'];
+var RUD=['12 मुखी','2 मुखी','3 मुखी','4 मुखी','5 मुखी','6 मुखी','7 मुखी'];
+var NA=[['चु','चे','चो','ला'],['ली','लू','ले','लो'],['अ','ई','उ','ए'],['ओ','वा','वी','वू'],['वे','वो','का','की'],['कू','घ','ङ','छ'],['के','को','हा','ही'],['हू','हे','हो','डा'],['डी','डू','डे','डो'],['मा','मी','मू','मे'],['मो','टा','टी','टू'],['टे','टो','पा','पी'],['पू','ष','ण','ठ'],['पे','पो','रा','री'],['रू','रे','रो','ता'],['ती','तू','ते','तो'],['ना','नी','नू','ने'],['नो','या','यी','यू'],['ये','यो','भा','भी'],['भू','धा','फा','ढा'],['भे','भो','जा','जी'],['खी','खू','खे','खो'],['गा','गी','गू','गे'],['गो','सा','सी','सू'],['से','सो','दा','दी'],['दू','थ','झ','ञ'],['दे','दो','चा','ची']];
+var MODE=['चर','स्थिर','सामान्य'];
+var KST=['अनंत','कुलिक','वासुकि','शंखपाल','पद्म','महापद्म','तक्षक','कर्कोटक','शंखचूड़','घातक','विषधर','शेषनाग'];
+function doshHtml(pl,lagSign,moonSign){
+  var mg=Math.floor(pl[2].lon/30),hl=((mg-lagSign+12)%12)+1,hm=((mg-moonSign+12)%12)+1,badH=[1,2,4,7,8,12];
+  var dL=badH.indexOf(hl)>=0,dM=badH.indexOf(hm)>=0;
+  var mt='<p><b>मंगल दोष:</b> मंगल लग्न से '+hl+' भाव और चंद्र से '+hm+' भाव में है। '+((dL||dM)?((dL&&dM)?'लग्न और चंद्र दोनों से मंगल दोष बनता है।':(dL?'लग्न से मंगल दोष बनता है।':'चंद्र से मंगल दोष बनता है।'))+' मंगल अपनी राशि, उच्च राशि या गुरु की दृष्टि जैसे परिहार भी देखे जाते हैं, इसलिए निर्णय से पहले ज्योतिषी से जाँच करवाएँ।':'मंगल दोष नहीं बनता।')+'</p>';
+  var rh=pl[7].lon,one=true,two=true;
+  for(var q=0;q<7;q++){var a=norm(pl[q].lon-rh);if(a>=180)one=false;else two=false}
+  var rhouse=((Math.floor(rh/30)-lagSign+12)%12)+1;
+  mt+='<p><b>काल सर्प योग:</b> '+((one||two)?'सातों ग्रह राहु-केतु के एक ही ओर हैं, इसलिए काल सर्प योग बनता है। राहु '+rhouse+' भाव में है, इसलिए यह '+KST[rhouse-1]+' काल सर्प योग कहलाता है।':'सातों ग्रह राहु-केतु के एक ही ओर नहीं हैं, काल सर्प योग नहीं बनता।')+'</p>';
+  return mt;
+}
+function run(){
+  $('err').textContent='';
+  try{
+    if(typeof Astronomy==='undefined')throw new Error('गणना लाइब्रेरी लोड नहीं हुई। पेज दोबारा खोलें।');
+    var dp=$('dt').value.split('-'),tp=$('tm').value.split(':');
+    if(dp.length<3||tp.length<2)throw new Error('तिथि और समय भरें।');
+    var lat=parseFloat($('lat').value),lon=parseFloat($('lon').value),tz=parseFloat($('tz').value);
+    if(isNaN(lat)||isNaN(lon)||isNaN(tz))throw new Error('अक्षांश, देशांतर और समय क्षेत्र भरें।');
+    var utc=new Date(Date.UTC(+dp[0],+dp[1]-1,+dp[2],+tp[0],+tp[1])-tz*3600000);
+    var P=positions(utc),asc=lagna(utc,lat,lon,P.ay),lagSign=Math.floor(asc/30),pl=P.pl,i,h;
+    for(i=0;i<9;i++)pl[i].r=(i>=7)?true:(i>=2?retro(PL[i].k,utc):false);
+    var moon=pl[1].lon,moonSign=Math.floor(moon/30),nk=Math.floor(moon/SPAN),pada=Math.floor((moon-nk*SPAN)/(SPAN/4))+1;
+    natal={lagSign:lagSign,moonSign:moonSign};
+    var house=function(p){return ((Math.floor(p.lon/30)-lagSign+12)%12)+1};
+    $('ttl').textContent=($('nm').value.trim()?$('nm').value.trim()+' की ':'')+'जन्म कुंडली';
+    $('meta').textContent=dp[2]+'-'+dp[1]+'-'+dp[0]+' · '+$('tm').value+' · अक्षांश '+lat+', देशांतर '+lon+' · अयनांश '+dm(P.ay);
+    $('sum').innerHTML='<div><small>लग्न</small><b>'+RASHI[lagSign]+' '+dm(asc%30)+'</b></div><div><small>चंद्र राशि</small><b>'+RASHI[moonSign]+'</b></div><div><small>जन्म नक्षत्र</small><b>'+NAK[nk]+' · पद '+pada+'</b></div><div><small>सूर्य राशि</small><b>'+RASHI[Math.floor(pl[0].lon/30)]+'</b></div><div><small>नाम अक्षर</small><b>'+NA[nk][pada-1]+'</b></div>';
+    last={l1:lagSign,p1:pl.map(function(p){return{a:p.a,sign:Math.floor(p.lon/30)+1}}),l9:Math.floor(asc*9/30)%12,p9:pl.map(function(p){return{a:p.a,sign:(Math.floor(p.lon*9/30)%12)+1}})};
+    renderCharts();
+    // planets table
+    var t=th(['ग्रह','राशि · अंश','नक्षत्र · पद','नक्षत्र स्वामी / उप स्वामी','भाव','शासक','घर का स्वामी','संबंध','गरिमा','गति']);
+    var an=Math.floor(asc/SPAN),al=nakLords(asc);
+    t+=tr(['लग्न',RASHI[lagSign]+' '+dm(asc%30),NAK[an]+' '+(Math.floor((asc-an*SPAN)/(SPAN/4))+1),al[0]+', '+al[1],1,'',PL[LORD[lagSign]].n,'','','']);
+    pl.forEach(function(p,i){
+      var sg=Math.floor(p.lon/30),n=Math.floor(p.lon/SPAN),pd=Math.floor((p.lon-n*SPAN)/(SPAN/4))+1,lo=nakLords(p.lon),rules=[],owner='',rel='',dig='',hh;
+      if(i<7){
+        for(hh=1;hh<=12;hh++)if(LORD[(lagSign+hh-1)%12]===i)rules.push(hh);
+        owner=PL[LORD[sg]].n;
+        rel=LORD[sg]===i?'स्वगृह':(FR[i][LORD[sg]]===2?'मित्र का घर':FR[i][LORD[sg]]===1?'तटस्थ':'शत्रु का घर');
+        dig=sg===EX[i]?'उच्च':(sg===(EX[i]+6)%12?'नीच':'');
+      }
+      t+=tr([p.n,RASHI[sg]+' '+dm(p.lon%30),NAK[n]+' '+pd,lo[0]+', '+lo[1],house(p),rules.length?rules.join(', ')+' भाव का':'',owner,rel,dig,p.r?'वक्री':'मार्गी']);
+    });
+    $('tpl').innerHTML=t;
+    // houses table
+    var bh=th(['भाव','निवासी','स्वामी','राशि','गुण','दृष्टि']),occ,asp,sgI,hp;
+    for(h=1;h<=12;h++){
+      sgI=(lagSign+h-1)%12;occ=[];asp=[];
+      pl.forEach(function(p){if(house(p)===h)occ.push(p.n)});
+      for(i=0;i<7;i++){hp=house(pl[i]);ASP[i].forEach(function(o){if(((hp-1+o)%12)+1===h)asp.push(PL[i].n)})}
+      bh+=tr([h+((h===1||h===4||h===7||h===10)?' (केंद्र)':(h===5||h===9)?' (त्रिकोण)':''),occ.join(', '),PL[LORD[sgI]].n,RASHI[sgI],(sgI%2===0?'पुलिंग':'स्त्रीलिंग')+', '+MODE[sgI%3],asp.join(', ')]);
+    }
+    $('tbh').innerHTML=bh;
+    var ds=dashas(moon,utc),now=new Date(),dh=th(['महादशा','आरंभ','समाप्ति']);
+    ds.forEach(function(d){dh+=tr([d.n,fd(d.s),fd(d.e)],(now>=d.s&&now<d.e)?'now':'')});
+    $('tds').innerHTML=dh;
+    gochar();
+    // doshas
+    var mt=doshHtml(pl,lagSign,moonSign);
+    var sat=Math.floor(positions(new Date()).pl[6].lon/30),sd=(sat-moonSign+12)%12;
+    mt+='<p><b>साढ़े साती:</b> आज शनि '+RASHI[sat]+' में है, आपकी चंद्र राशि '+RASHI[moonSign]+' से '+(sd+1)+' भाव में। '+(sd===11?'साढ़े साती का पहला चरण चल रहा है।':sd===0?'साढ़े साती का दूसरा चरण चल रहा है।':sd===1?'साढ़े साती का तीसरा चरण चल रहा है।':(sd===3||sd===7)?'शनि की ढैया की स्थिति है।':'अभी साढ़े साती या ढैया नहीं है।')+' पूरे जीवन की साढ़े साती की तिथियाँ नीचे कैलकुलेटर में हैं।</p>';
+    $('dos').innerHTML=mt;
+    // gems and rudraksha
+    var g1=LORD[lagSign],g5=LORD[(lagSign+4)%12],g9=LORD[(lagSign+8)%12];
+    $('trt').innerHTML=th(['किस आधार पर','ग्रह','रत्न'])+tr(['लग्नेश (जीवन रत्न)',PL[g1].n,GEM[g1]])+tr(['पंचमेश (कारक रत्न)',PL[g5].n,GEM[g5]])+tr(['नवमेश (भाग्य रत्न)',PL[g9].n,GEM[g9]]);
+    var ml=LORD[moonSign];
+    $('rud').innerHTML='<p><b>रुद्राक्ष:</b> चंद्र राशि '+RASHI[moonSign]+' के स्वामी '+PL[ml].n+' के लिए '+RUD[ml]+', और लग्नेश '+PL[g1].n+' के लिए '+RUD[g1]+' रुद्राक्ष परंपरा में बताया जाता है। रत्न और रुद्राक्ष धारण करने से पहले ज्योतिषी की सलाह लें।</p>';
+    $('out').hidden=false;
+  }catch(e){$('err').textContent=e.message}
+}
+
+// ---- Vivah Milan (Ashtakoota)
+var VR=[3,2,1,4,3,2,1,4,3,2,1,4],VN=['','शूद्र','वैश्य','क्षत्रिय','ब्राह्मण'];
+var VGN=['चतुष्पद','मानव','जलचर','वनचर','कीट'],VT=[[2,1,1,0.5,1],[1,2,0.5,0,1],[1,0.5,2,1,1],[0,0,0,2,0],[1,1,1,0,2]];
+function vashya(l){var s=Math.floor(l/30),h=(l%30)>=15;return [0,0,1,2,3,1,1,4,h?0:1,h?2:0,1,2][s]}
+var YO=['अश्व','गज','मेष','सर्प','सर्प','श्वान','मार्जार','मेष','मार्जार','मूषक','मूषक','गौ','महिष','व्याघ्र','महिष','व्याघ्र','मृग','मृग','श्वान','वानर','नकुल','वानर','सिंह','अश्व','सिंह','गौ','गज'];
+var YE=[['गौ','व्याघ्र'],['गज','सिंह'],['अश्व','महिष'],['श्वान','मृग'],['सर्प','नकुल'],['वानर','मेष'],['मार्जार','मूषक']];
+function yoni(a,b){if(a===b)return 4;for(var i=0;i<YE.length;i++){if((YE[i][0]===a&&YE[i][1]===b)||(YE[i][1]===a&&YE[i][0]===b))return 0}return 2}
+function maitri(a,b){if(a===b)return 5;var x=FR[a][b],y=FR[b][a],s=x+y;if(s===4)return 5;if(s===3)return 4;if(s===2)return (x===1&&y===1)?3:1;if(s===1)return 0.5;return 0}
+var GA=[0,1,2,1,0,1,0,0,2,2,1,1,0,2,0,2,0,2,2,1,1,0,2,2,1,1,0],GNN=['देव','मनुष्य','राक्षस'],GT=[[6,6,0],[5,6,0],[1,0,6]];
+var NDN=['आदि','मध्य','अंत'];
+function nadi(n){return [0,1,2,2,1,0][n%6]}
+function taraGood(from,to){var c=((to-from+27)%27)+1,r=c%9;return !(r===3||r===5||r===7)}
+function moonAt(ds,ts,tz){var d=ds.split('-'),t=ts.split(':');return sidLon('Moon',new Date(Date.UTC(+d[0],+d[1]-1,+d[2],+t[0],+t[1])-tz*3600000))}
+function runM(){
+  $('merr').textContent='';
+  try{
+    if(typeof Astronomy==='undefined')throw new Error('गणना लाइब्रेरी लोड नहीं हुई।');
+    var tz=parseFloat($('mtz').value);
+    if(!$('bd').value||!$('bt').value||!$('gd').value||!$('gt').value||isNaN(tz))throw new Error('दोनों की तिथि, समय और समय क्षेत्र भरें।');
+    var bl=moonAt($('bd').value,$('bt').value,tz),gl=moonAt($('gd').value,$('gt').value,tz);
+    var bs=Math.floor(bl/30),gs=Math.floor(gl/30),bn=Math.floor(bl/SPAN),gn=Math.floor(gl/SPAN);
+    var K=[];
+    K.push(['वर्ण',1,VR[bs]>=VR[gs]?1:0,'वर '+VN[VR[bs]]+' · वधू '+VN[VR[gs]]]);
+    var bv=vashya(bl),gv=vashya(gl);
+    K.push(['वश्य',2,VT[bv][gv],'वर '+VGN[bv]+' · वधू '+VGN[gv]]);
+    var t1=taraGood(gn,bn),t2=taraGood(bn,gn);
+    K.push(['तारा',3,(t1&&t2)?3:(t1||t2)?1.5:0,(t1&&t2)?'दोनों ओर से शुभ':(t1||t2)?'एक ओर से शुभ':'दोनों ओर से अशुभ']);
+    K.push(['योनि',4,yoni(YO[bn],YO[gn]),'वर '+YO[bn]+' · वधू '+YO[gn]]);
+    K.push(['ग्रह मैत्री',5,maitri(LORD[bs],LORD[gs]),'वर राशि स्वामी '+PL[LORD[bs]].n+' · वधू '+PL[LORD[gs]].n]);
+    K.push(['गण',6,GT[GA[bn]][GA[gn]],'वर '+GNN[GA[bn]]+' · वधू '+GNN[GA[gn]]]);
+    var d=((bs-gs+12)%12)+1,bad=[2,12,5,9,6,8].indexOf(d)>=0;
+    K.push(['भकूट',7,bad?0:7,bad?'राशियाँ परस्पर '+d+' और '+(14-d>12?(14-d)-12:14-d)+' में, भकूट दोष':'राशियों का संबंध शुभ']);
+    var nb=nadi(bn),ng=nadi(gn);
+    K.push(['नाड़ी',8,nb===ng?0:8,nb===ng?'दोनों की नाड़ी '+NDN[nb]+', नाड़ी दोष':'वर '+NDN[nb]+' · वधू '+NDN[ng]]);
+    var tot=0;K.forEach(function(k){tot+=k[2]});
+    var h=th(['कूट','पूर्णांक','प्राप्तांक','विवरण']);
+    K.forEach(function(k){h+=tr([k[0],k[1],k[2],k[3]])});
+    h+=tr(['कुल',36,tot,''],'now');
+    $('mtb').innerHTML=h;
+    $('msum').className='summary two';
+    $('msum').innerHTML='<div><small>'+esc($('bn').value||'वर')+' (वर)</small><b>'+RASHI[bs]+' · '+NAK[bn]+'</b></div><div><small>'+esc($('gn').value||'वधू')+' (वधू)</small><b>'+RASHI[gs]+' · '+NAK[gn]+'</b></div><div><small>कुल गुण</small><b>'+tot+' / 36</b></div>';
+    var v=tot>=33?'उत्तम मिलान':tot>=25?'अच्छा मिलान':tot>=18?'मध्यम मिलान, कुछ बातों पर विचार करें':'18 से कम गुण, सामान्यतः मिलान अनुकूल नहीं माना जाता';
+    var fl=[];if(nb===ng)fl.push('नाड़ी दोष');if(bad)fl.push('भकूट दोष');
+    $('mver').textContent=v+'. '+(fl.length?fl.join(' और ')+' दिख रहा है, इसके परिहार भी होते हैं। ':'')+'यह केवल गुण मिलान है। दोनों कुंडलियों का पूरा विश्लेषण और मंगल दोष की तुलना ज्योतिषी से करवाएँ। योनि में मित्र और सम का अंतर छोड़कर 2 अंक गिने गए हैं।';
+    $('mout').hidden=false;
+  }catch(e){$('merr').textContent=e.message}
+}
+
+// ---- Panchang, muhurta, rashifal, vedic time, vrat, shraddh
+var TITHI=['प्रतिपदा','द्वितीया','तृतीया','चतुर्थी','पंचमी','षष्ठी','सप्तमी','अष्टमी','नवमी','दशमी','एकादशी','द्वादशी','त्रयोदशी','चतुर्दशी'];
+function tname(t){return (t<15?'शुक्ल ':'कृष्ण ')+(t===14?'पूर्णिमा':t===29?'अमावस्या':TITHI[t%15])}
+var YOGA=['विष्कुंभ','प्रीति','आयुष्मान','सौभाग्य','शोभन','अतिगंड','सुकर्मा','धृति','शूल','गंड','वृद्धि','ध्रुव','व्याघात','हर्षण','वज्र','सिद्धि','व्यतीपात','वरीयान','परिघ','शिव','सिद्ध','साध्य','शुभ','शुक्ल','ब्रह्म','ऐंद्र','वैधृति'];
+var KAR=['बव','बालव','कौलव','तैतिल','गर','वणिज','विष्टि'];
+var VAAR=['रविवार','सोमवार','मंगलवार','बुधवार','गुरुवार','शुक्रवार','शनिवार'];
+var MASA=['चैत्र','वैशाख','ज्येष्ठ','आषाढ़','श्रावण','भाद्रपद','आश्विन','कार्तिक','मार्गशीर्ष','पौष','माघ','फाल्गुन'];
+var HL=['सूर्य','शुक्र','बुध','चंद्र','शनि','गुरु','मंगल'],HS=[0,3,6,2,5,1,4];
+var CD=['उद्वेग','चल','लाभ','अमृत','काल','शुभ','रोग'],CN=['चल','रोग','काल','लाभ','उद्वेग','शुभ','अमृत'];
+var CDS=[0,3,6,2,5,1,4],CNS=[5,0,2,4,6,1,3];
+var RKS=[8,2,7,5,6,4,3],YGS=[5,4,3,2,1,7,6],GLS=[7,6,5,4,3,2,1];
+function gl(n){return (n==='गुरु'||n==='शुक्र'||n==='बुध'||n==='चंद्र')?'<span class="qg">'+n+'</span>':n}
+function qc(n){return (n==='लाभ'||n==='अमृत'||n==='शुभ')?'<span class="qg">'+n+'</span>':(n==='काल'||n==='रोग'||n==='उद्वेग')?'<span class="qb">'+n+'</span>':n}
+function endTime(t0,fn){
+  var i0=fn(t0),t=t0.getTime(),hi=null,k,t2;
+  for(k=0;k<200;k++){t2=t+900000;if(fn(new Date(t2))!==i0){hi=t2;break}t=t2}
+  if(hi===null)return null;
+  var lo=t;while(hi-lo>60000){var mid=(lo+hi)/2;if(fn(new Date(mid))===i0)lo=mid;else hi=mid}
+  return new Date(hi);
+}
+function tithiAt(d){return Math.floor(norm(sidLon('Moon',d)-sidLon('Sun',d))/12)}
+function hinduMonth(date){
+  var s=new Date(date.getTime()-31*86400000),last=null,q,i;
+  for(i=0;i<3;i++){q=Astronomy.SearchMoonPhase(0,s,35);if(!q)break;if(q.date.getTime()<=date.getTime()){last=q.date;s=new Date(q.date.getTime()+86400000)}else break}
+  if(!last)return 0;
+  return (Math.floor(sidLon('Sun',last)/30)+1)%12;
+}
+var RAS=['शुभ','सावधानी','शुभ','सावधानी','सावधानी','शुभ','शुभ','सावधानी','सावधानी','शुभ','शुभ','सावधानी'];
+var RTX=['मन में उत्साह और आत्मविश्वास रहेगा। भावनाएँ तेज़ रह सकती हैं, खान-पान और नींद का ध्यान रखें।','खर्च बढ़ सकता है और बातचीत में कठोरता से बचें। पैसे के लेन-देन में सावधानी रखें।','साहस और पुरुषार्थ बढ़ेगा। भाई-बहनों या पड़ोसियों से सहयोग मिल सकता है, छोटी यात्रा संभव है।','मन अशांत रह सकता है। घर, वाहन या माता से जुड़े मामलों में धैर्य रखें।','निर्णयों में जल्दबाज़ी न करें। बच्चों और पढ़ाई से जुड़ी चिंता रह सकती है, शांत रहकर काम करें।','विरोधी और रुकावटें कमज़ोर पड़ेंगी। कर्ज़ या पुराने काम निपटाने के लिए अच्छा दिन है।','साझेदारी और दांपत्य में सामंजस्य रहेगा। मेल-मुलाकात और व्यापारिक बातचीत लाभकारी रहेगी।','अनचाही रुकावट या देरी हो सकती है। स्वास्थ्य और वाहन चलाने में सावधानी रखें, बड़े फ़ैसले टालें।','भाग्य का साथ कम महसूस होगा। यात्रा में देरी और बड़ों से मतभेद संभव है, विनम्र रहें।','कार्यक्षेत्र में सफलता और मान-सम्मान के योग हैं। रुके हुए काम आगे बढ़ेंगे।','आय और मित्रों से लाभ के योग हैं। मनचाहे काम पूरे होने की संभावना है।','खर्च और भागदौड़ बढ़ेगी। नींद और स्वास्थ्य पर ध्यान दें, अनावश्यक खर्च से बचें।'];
+function obsOf(){return new Astronomy.Observer(parseFloat($('plat').value),parseFloat($('plon').value),0)}
+function vedic(obs,tz){
+  var now=Date.now(),ev=[],s=new Date(now-40*3600000),k,rise,set;
+  for(k=0;k<6;k++){
+    rise=Astronomy.SearchRiseSet('Sun',obs,+1,s,2);if(!rise)break;ev.push({t:rise.date.getTime(),r:true});
+    set=Astronomy.SearchRiseSet('Sun',obs,-1,rise.date,2);if(!set)break;ev.push({t:set.date.getTime(),r:false});
+    s=set.date;
+  }
+  for(k=0;k+1<ev.length;k++){
+    if(ev[k].t<=now&&now<ev[k+1].t){
+      var g=(ev[k].r?0:30)+30*(now-ev[k].t)/(ev[k+1].t-ev[k].t),gh=Math.floor(g),rem=(g-gh)*60,pa=Math.floor(rem),vi=Math.floor((rem-pa)*60);
+      return '<div><small>वैदिक समय (घटी : पल : विपल)</small><b>'+pad(gh)+' : '+pad(pa)+' : '+pad(vi)+'</b></div><div><small>अभी का समय</small><b>'+ft(now,tz)+'</b></div><div><small>चरण</small><b>'+(ev[k].r?'दिन':'रात')+'</b></div>';
+    }
+  }
+  return '<div><small>वैदिक समय</small><b>नहीं मिला</b></div>';
+}
+function runP(){
+  $('perr').textContent='';
+  try{
+    if(typeof Astronomy==='undefined')throw new Error('गणना लाइब्रेरी लोड नहीं हुई।');
+    var dp=$('pd').value.split('-'),lat=parseFloat($('plat').value),lon=parseFloat($('plon').value),tz=parseFloat($('ptz').value);
+    if(dp.length<3||isNaN(lat)||isNaN(lon)||isNaN(tz))throw new Error('तारीख, अक्षांश, देशांतर और समय क्षेत्र भरें।');
+    var Y=+dp[0],M=+dp[1],D=+dp[2],ms0=Date.UTC(Y,M-1,D)-tz*3600000,obs=new Astronomy.Observer(lat,lon,0);
+    var r=Astronomy.SearchRiseSet('Sun',obs,+1,new Date(ms0),1);
+    var s=r&&Astronomy.SearchRiseSet('Sun',obs,-1,r.date,1);
+    var r2=s&&Astronomy.SearchRiseSet('Sun',obs,+1,s.date,1);
+    if(!r||!s||!r2)throw new Error('इस स्थान और तारीख पर सूर्योदय या सूर्यास्त नहीं मिला।');
+    var sr=r.date.getTime(),ss=s.date.getTime(),nr=r2.date.getTime(),dl=ss-sr,nl=nr-ss,wd=new Date(Date.UTC(Y,M-1,D)).getUTCDay(),srd=new Date(sr);
+    var fT=function(d){return tithiAt(d)};
+    var fN=function(d){return Math.floor(sidLon('Moon',d)/SPAN)};
+    var fY=function(d){return Math.floor(norm(sidLon('Moon',d)+sidLon('Sun',d))/SPAN)};
+    var fK=function(d){return Math.floor(norm(sidLon('Moon',d)-sidLon('Sun',d))/6)};
+    var fR=function(d){return Math.floor(sidLon('Moon',d)/30)};
+    var t=fT(srd),n=fN(srd),y=fY(srd),k=fK(srd),ml=sidLon('Moon',srd),sl=sidLon('Sun',srd),mr=Math.floor(ml/30);
+    var kn=k===0?'किंस्तुघ्न':k>=57?['शकुनि','चतुष्पद','नाग'][k-57]:KAR[(k-1)%7];
+    var base=new Date(sr+tz*3600000).getUTCDate();
+    var ed=function(fn){var e=endTime(srd,fn);return e?fdt(e,tz,base):''};
+    $('psum').innerHTML='<div><small>वार</small><b>'+VAAR[wd]+'</b></div><div><small>सूर्योदय</small><b>'+ft(sr,tz)+'</b></div><div><small>सूर्यास्त</small><b>'+ft(ss,tz)+'</b></div><div><small>दिनमान</small><b>'+Math.floor(dl/3600000)+' घं '+Math.round((dl%3600000)/60000)+' मि</b></div>';
+    var hm=hinduMonth(srd);
+    var h=th(['विवरण','स्थिति','समाप्ति']);
+    h+=tr(['तिथि',tname(t),ed(fT)]);
+    h+=tr(['नक्षत्र',NAK[n],ed(fN)]);
+    h+=tr(['योग',YOGA[y],ed(fY)]);
+    h+=tr(['करण',kn,ed(fK)]);
+    h+=tr(['पक्ष',t<15?'शुक्ल पक्ष':'कृष्ण पक्ष','']);
+    h+=tr(['अमांत महीना',MASA[hm],'']);
+    h+=tr(['पूर्णिमांत महीना',MASA[t<15?hm:(hm+1)%12],'']);
+    h+=tr(['सूर्य राशि',RASHI[Math.floor(sl/30)],'']);
+    h+=tr(['चंद्र राशि',RASHI[mr],ed(fR)]);
+    $('tpn').innerHTML=h;
+    var seg=dl/8,sg=function(i){return ft(sr+(i-1)*seg,tz)+' – '+ft(sr+i*seg,tz)};
+    $('trk').innerHTML=th(['काल','समय'])+tr(['राहु काल',sg(RKS[wd])])+tr(['यमगंड',sg(YGS[wd])])+tr(['गुलिक काल',sg(GLS[wd])]);
+    var rk0=sr+(RKS[wd]-1)*seg,rk1=rk0+seg;
+    var mu=th(['मुहूर्त','समय','टिप्पणी']);
+    mu+=tr(['ब्रह्म मुहूर्त',ft(sr-96*60000,tz)+' – '+ft(sr-48*60000,tz),'सूर्योदय से पहले, साधना और अध्ययन के लिए']);
+    mu+=tr(['अभिजित मुहूर्त',ft(sr+dl*7/15,tz)+' – '+ft(sr+dl*8/15,tz),'दिन का मध्य भाग']);
+    var cdh=th(['क्रम','दिन','रात']),hoh=th(['क्रम','दिन के होरा','रात के होरा']),i,a,b,c;
+    for(i=0;i<8;i++){
+      a=sr+i*dl/8;b=sr+(i+1)*dl/8;c=CD[(CDS[wd]+i)%7];
+      var nm=CN[(CNS[wd]+i)%7],a2=ss+i*nl/8,b2=ss+(i+1)*nl/8;
+      cdh+=tr([i+1,qc(c)+' '+ft(a,tz)+' – '+ft(b,tz),qc(nm)+' '+ft(a2,tz)+' – '+ft(b2,tz)]);
+      if(c==='लाभ'||c==='अमृत'||c==='शुभ')mu+=tr(['चौघड़िया '+c,ft(a,tz)+' – '+ft(b,tz),(a<rk1&&rk0<b)?'राहु काल से मिलता है':'']);
+    }
+    for(i=0;i<12;i++){
+      hoh+=tr([i+1,gl(HL[(HS[wd]+i)%7])+' '+ft(sr+i*dl/12,tz)+' – '+ft(sr+(i+1)*dl/12,tz),gl(HL[(HS[wd]+12+i)%7])+' '+ft(ss+i*nl/12,tz)+' – '+ft(ss+(i+1)*nl/12,tz)]);
+    }
+    $('tmu').innerHTML=mu;$('tho').innerHTML=hoh;$('tch').innerHTML=cdh;
+    try{
+      var SAR=[[0,7,12,18,20,25],[3,4,7,16,21],[0,2,8,25],[2,3,4,12,16],[0,6,7,16,26],[0,6,16,20,26],[3,14,21]],AMR=[12,4,0,16,7,26,21];
+      var e1=endTime(srd,fN),segs=[{n:fN(srd),a:sr,b:(e1&&e1.getTime()<nr)?e1.getTime():nr}];
+      if(e1&&e1.getTime()<nr){var s2=new Date(e1.getTime()+60000),e2=endTime(s2,fN);segs.push({n:fN(s2),a:e1.getTime(),b:(e2&&e2.getTime()<nr)?e2.getTime():nr})}
+      var sy=th(['योग','समय','नक्षत्र']),got=false;
+      segs.forEach(function(x){
+        var tmr=ft(x.a,tz)+' – '+fdt(new Date(x.b),tz,base);
+        if(SAR[wd].indexOf(x.n)>=0){sy+=tr(['सर्वार्थ सिद्धि योग',tmr,NAK[x.n]]);got=true}
+        if(AMR[wd]===x.n){sy+=tr(['अमृत सिद्धि योग',tmr,NAK[x.n]]);got=true}
+      });
+      if(!got)sy+=tr(['आज सर्वार्थ सिद्धि या अमृत सिद्धि योग नहीं','','']);
+      var pkf=function(d){return sidLon('Moon',d)>=300?1:0},pk0=pkf(srd),pke=endTime(srd,pkf);
+      sy+=tr(['पंचक',pk0?'सूर्योदय पर पंचक चल रहा है':'सूर्योदय पर पंचक नहीं',(pke&&pke.getTime()<nr)?'बदलाव '+fdt(pke,tz,base):'']);
+      $('tsy').innerHTML=sy;
+    }catch(e6){$('tsy').innerHTML=''}
+    try{
+      var lgS=function(ms){var dd2=new Date(ms);return Math.floor(lagna(dd2,lat,lon,ayOf(dd2))/30)};
+      var lrows=[],pS=lgS(sr),sS=sr,tm2,gS,lo2,hi2,md2;
+      for(tm2=sr+180000;tm2<nr;tm2+=180000){
+        gS=lgS(tm2);
+        if(gS!==pS){lo2=tm2-180000;hi2=tm2;while(hi2-lo2>20000){md2=(lo2+hi2)/2;if(lgS(md2)===pS)lo2=md2;else hi2=md2}lrows.push([pS,sS,hi2]);sS=hi2;pS=gS}
+      }
+      lrows.push([pS,sS,nr]);
+      var lh=th(['लग्न','आरंभ','समाप्ति']);
+      lrows.forEach(function(x,ix){lh+=tr([RASHI[x[0]],ix===0?'सूर्योदय '+ft(sr,tz):fdt(new Date(x[1]),tz,base),ix===lrows.length-1?'सूर्योदय '+fdt(new Date(nr),tz,base):fdt(new Date(x[2]),tz,base)])});
+      $('tul').innerHTML=lh;
+    }catch(e7){$('tul').innerHTML=''}
+    var jn=th(['पच्चक्खाण','समय']);
+    jn+=tr(['नवकारशी (सूर्योदय के 48 मिनट बाद)',ft(sr+48*60000,tz)]);
+    jn+=tr(['पोरसी (दिनमान का चौथाई)',ft(sr+dl/4,tz)]);
+    jn+=tr(['साढ़ पोरसी (दिनमान का 3/8)',ft(sr+dl*3/8,tz)]);
+    jn+=tr(['पुरिमड्ढ (दिनमान का आधा)',ft(sr+dl/2,tz)]);
+    jn+=tr(['अवड्ढ (दिनमान का 3/4)',ft(sr+dl*3/4,tz)]);
+    jn+=tr(['सूर्यास्त (चौविहार का समय)',ft(ss,tz)]);
+    $('tjn').innerHTML=jn;
+    // rashifal from Moon transit
+    var mend=endTime(srd,fR);
+    $('rmeta').textContent='चंद्र '+RASHI[mr]+' राशि में'+(mend?' ('+fdt(mend,tz,base)+' तक, फिर '+RASHI[(mr+1)%12]+')':'')+'। हर राशि के लिए चंद्र की गिनती उसी राशि से की गई है। सामान्य संकेत हैं, आपकी कुंडली के हिसाब से अलग हो सकते हैं।';
+    var rc='';
+    for(i=0;i<12;i++){var hh=((mr-i+12)%12);rc+='<div class="rc"><b>'+RASHI[i]+'</b><small class="'+(RAS[hh]==='शुभ'?'qg':'qb')+'">'+RAS[hh]+'</small><p>'+RTX[hh]+'</p></div>'}
+    $('rcards').innerHTML=rc;
+    $('vsum').innerHTML=vedic(obs,tz);
+    $('pout').hidden=false;
+  }catch(e){$('perr').textContent=e.message}
+}
+// vrat finder
+var VRAT=[
+ ['एकादशी',[10,25],'sr'],['पूर्णिमा',[14],'ss'],['अमावस्या',[29],'aft'],['प्रदोष (त्रयोदशी)',[12,27],'ss60'],
+ ['संकष्टी चतुर्थी',[18],'moon'],['मासिक शिवरात्रि',[28],'mid'],['दुर्गाष्टमी',[7],'noon'],['कालाष्टमी',[22],'mid'],['स्कंद षष्ठी',[5],'noon'],
+ ['द्वादशी',[11,26],'sr'],['विनायक / गणेश चतुर्थी (शुक्ल)',[3],'noon'],['चंद्र दर्शन',null,'cd'],['मासिक कार्तिगाई (कृत्तिका नक्षत्र)',null,'krit'],['मासिक कृष्ण जन्माष्टमी',[22],'mid']
+];
+function runV(){
+  $('verr').textContent='';
+  try{
+    var dp=$('pd').value.split('-'),lat=parseFloat($('plat').value),lon=parseFloat($('plon').value),tz=parseFloat($('ptz').value);
+    if(dp.length<3||isNaN(lat)||isNaN(lon)||isNaN(tz))throw new Error('ऊपर तारीख, अक्षांश, देशांतर और समय क्षेत्र भरें।');
+    var v=VRAT[$('vt').value],Y=+dp[0],M=+dp[1],D=+dp[2],obs=new Astronomy.Observer(lat,lon,0),out=[],prev=-9,i;
+    for(i=0;i<250&&out.length<12;i++){
+      var ms0=Date.UTC(Y,M-1,D+i)-tz*3600000,r=Astronomy.SearchRiseSet('Sun',obs,+1,new Date(ms0),1);if(!r)continue;
+      var s=Astronomy.SearchRiseSet('Sun',obs,-1,r.date,1);if(!s)continue;
+      var sr=r.date.getTime(),ss=s.date.getTime(),dl=ss-sr,tau;
+      if(v[2]==='cd')tau=ss+1200000;
+      else if(v[2]==='krit')tau=ss;
+      else if(v[2]==='sr')tau=sr;
+      else if(v[2]==='noon')tau=sr+dl/2;
+      else if(v[2]==='aft')tau=sr+dl*0.65;
+      else if(v[2]==='ss')tau=ss;
+      else if(v[2]==='ss60')tau=ss+3600000;
+      else if(v[2]==='mid')tau=ss+(86400000-dl)/2;
+      else{var mq=Astronomy.SearchRiseSet('Moon',obs,+1,s.date,1);if(!mq)continue;tau=mq.date.getTime()}
+      var tt=tithiAt(new Date(tau)),hit;
+      if(v[2]==='cd'){var el=norm(sidLon('Moon',new Date(tau))-sidLon('Sun',new Date(tau)));hit=el>=12&&el<25}
+      else if(v[2]==='krit')hit=Math.floor(sidLon('Moon',new Date(tau))/SPAN)===2;
+      else hit=v[1].indexOf(tt)>=0;
+      if(hit){
+        if(prev!==i-1){var dd=new Date(Date.UTC(Y,M-1,D+i));out.push([pad(dd.getUTCDate())+'-'+pad(dd.getUTCMonth()+1)+'-'+dd.getUTCFullYear(),VAAR[dd.getUTCDay()],tname(tt)])}
+        prev=i;
+      }
+    }
+    var h=th(['तारीख','वार','तिथि']);
+    out.forEach(function(o){h+=tr(o)});
+    if(!out.length)h+=tr(['इस अवधि में नहीं मिली','','']);
+    $('tvr').innerHTML=h;
+  }catch(e){$('verr').textContent=e.message}
+}
+// shraddh
+function runS(){
+  var o=$('sout');
+  try{
+    var sd=$('sdt').value,st=$('stm').value||'12:00',tz=parseFloat($('ptz').value),lat=parseFloat($('plat').value),lon=parseFloat($('plon').value);
+    if(!sd||isNaN(tz)||isNaN(lat)||isNaN(lon)){o.innerHTML='<p class="err">देहांत की तारीख और ऊपर का स्थान भरें।</p>';return}
+    var d=sd.split('-'),t=st.split(':'),dd=new Date(Date.UTC(+d[0],+d[1]-1,+d[2],+t[0],+t[1])-tz*3600000);
+    var t0=tithiAt(dd),m0=hinduMonth(dd),obs=new Astronomy.Observer(lat,lon,0);
+    var now=new Date(),ny=now.getUTCFullYear(),nm=now.getUTCMonth(),nd=now.getUTCDate();
+    var annual=null,monthly=[],prev=-9,i;
+    for(i=0;i<400;i++){
+      var ms0=Date.UTC(ny,nm,nd+i)-tz*3600000,r=Astronomy.SearchRiseSet('Sun',obs,+1,new Date(ms0),1);if(!r)continue;
+      var s=Astronomy.SearchRiseSet('Sun',obs,-1,r.date,1);if(!s)continue;
+      var tau=new Date(r.date.getTime()+(s.date.getTime()-r.date.getTime())*0.7);
+      if(tithiAt(tau)===t0){
+        if(prev!==i-1){
+          var x=new Date(Date.UTC(ny,nm,nd+i)),str=pad(x.getUTCDate())+'-'+pad(x.getUTCMonth()+1)+'-'+x.getUTCFullYear()+' ('+VAAR[x.getUTCDay()]+')';
+          if(monthly.length<6)monthly.push(str);
+          if(!annual&&hinduMonth(tau)===m0)annual=str;
+        }
+        prev=i;
+      }
+    }
+    o.innerHTML='<p><b>देहांत के समय:</b> '+tname(t0)+', '+MASA[m0]+' मास (अमांत)।</p><p><b>वार्षिक श्राद्ध:</b> '+(annual||'400 दिन में नहीं मिली, अधिक मास या क्षय तिथि के कारण स्थानीय पंचांग देखें')+'</p><p><b>मासिक श्राद्ध (अगली तिथियाँ):</b> '+monthly.join(' · ')+'</p><p>श्राद्ध की तिथि अपराह्न में जिस दिन यह तिथि हो उस दिन ली गई है। पंडित जी से निश्चित तारीख की पुष्टि कर लें।</p>';
+  }catch(e){o.innerHTML='<p class="err">'+esc(e.message)+'</p>'}
+}
+
+// ---- calculators
+function edge(fn,lo,hi){while(hi-lo>86400000){var m=(lo+hi)/2;if(fn(m))hi=m;else lo=m}return hi}
+function runC(){
+  $('cerr').textContent='';
+  try{
+    if(typeof Astronomy==='undefined')throw new Error('गणना लाइब्रेरी लोड नहीं हुई।');
+    var tz=parseFloat($('ctz').value),ds=$('cd').value.split('-'),ts=$('ct').value.split(':');
+    if(ds.length<3||ts.length<2||isNaN(tz))throw new Error('तिथि, समय और समय क्षेत्र भरें।');
+    var b=new Date(Date.UTC(+ds[0],+ds[1]-1,+ds[2],+ts[0],+ts[1])-tz*3600000),moon=sidLon('Moon',b),sun=sidLon('Sun',b);
+    var ms=Math.floor(moon/30),n=Math.floor(moon/SPAN),pd=Math.floor((moon-n*SPAN)/(SPAN/4))+1,nl=nakLords(moon);
+    var clat=parseFloat($('clat').value),clon=parseFloat($('clon').value);
+    if(isNaN(clat)||isNaN(clon))throw new Error('अक्षांश और देशांतर भरें।');
+    var CP=positions(b),casc=lagna(b,clat,clon,CP.ay),clag=Math.floor(casc/30);
+    var tm0=Math.floor(sidLon('Moon',new Date())/30),hh0=(tm0-ms+12)%12;
+    var extra='<p><b>जन्म लग्न:</b> '+RASHI[clag]+' '+dm(casc%30)+' (स्वामी '+PL[LORD[clag]].n+')</p>'+doshHtml(CP.pl,clag,ms)+'<p><b>आज का वैदिक राशिफल ('+RASHI[ms]+' राशि):</b> <span class="'+(RAS[hh0]==='शुभ'?'qg':'qb')+'">'+RAS[hh0]+'</span>. '+RTX[hh0]+'</p>';
+    var html='<p><b>जन्म राशि:</b> '+RASHI[ms]+' (स्वामी '+PL[LORD[ms]].n+') · <b>सूर्य राशि:</b> '+RASHI[Math.floor(sun/30)]+'</p>'
+      +'<p><b>जन्म नक्षत्र:</b> '+NAK[n]+', पद '+pd+' (स्वामी '+nl[0]+')</p>'
+      +'<p><b>नाम अक्षर:</b> '+NA[n][pd-1]+' · इस नक्षत्र के चारों पद: '+NA[n].join(', ')+'</p>'
+      +extra+'<p id="csade">साढ़े साती की गणना हो रही है…</p><p id="csah">सहस्र चंद्रोदय की गणना हो रही है…</p>';
+    $('cout').innerHTML=html;
+    setTimeout(function(){
+      var step=20*86400000,inS=function(ms_){var sg=Math.floor(sidLon('Saturn',new Date(ms_))/30),d=(sg-ms+12)%12;return d===11||d===0||d===1};
+      var base=b.getTime(),prev=inS(base),cur=prev?{s:base}:null,out=[],k,t,v;
+      for(k=1;k<=1640;k++){
+        t=base+k*step;v=inS(t);
+        if(v&&!prev)cur={s:edge(function(x){return inS(x)},t-step,t)};
+        if(!v&&prev){cur.e=edge(function(x){return !inS(x)},t-step,t);out.push(cur);cur=null}
+        prev=v;
+      }
+      if(cur){cur.e=null;out.push(cur)}
+      var merged=[];
+      out.forEach(function(o){var L=merged[merged.length-1];if(L&&L.e&&o.s-L.e<400*86400000){L.e=o.e}else merged.push(o)});
+      var nowT=Date.now(),sh=th(['चरण','आरंभ','समाप्ति']);
+      merged.forEach(function(o,i){var on=o.s<=nowT&&(!o.e||nowT<o.e);sh+=tr(['साढ़े साती '+(i+1),dstr(o.s,tz),o.e?dstr(o.e,tz):'-'],on?'now':'')});
+      $('csade').innerHTML='<b>साढ़े साती (चंद्र राशि '+RASHI[ms]+' से, शनि के गोचर पर):</b><div class="tw"><table>'+sh+'</table></div>'+(merged.length?'':'जीवन के पहले 90 वर्ष में नहीं मिली।');
+      // sahasra chandrodaya, chunked so the page stays responsive
+      var tcur=b.getTime(),cnt=0,lastF=null;
+      var chunk=function(){
+        var end=Math.min(cnt+100,1000);
+        for(;cnt<end;cnt++){var q=Astronomy.SearchMoonPhase(180,new Date(tcur),40);if(!q){cnt=1000;break}lastF=q.date.getTime();tcur=lastF+86400000}
+        if(cnt<1000){$('csah').textContent='सहस्र चंद्रोदय की गणना हो रही है… '+Math.round(cnt/10)+'%';setTimeout(chunk,0)}
+        else if(lastF){var age=(lastF-b.getTime())/(365.2425*86400000);$('csah').innerHTML='<b>सहस्र चंद्रोदय:</b> जन्म के बाद 1000वीं पूर्णिमा '+dstr(lastF,tz)+' को होगी, तब आयु लगभग '+Math.floor(age)+' वर्ष '+Math.round((age-Math.floor(age))*12)+' महीने।'}
+      };
+      chunk();
+    },30);
+  }catch(e){$('cerr').textContent=e.message}
+}
+
+// ---- festivals, pitru paksha, sankranti, planets, eclipses
+function ayOf(d){var T=(d.getTime()/86400000+2440587.5-2451545)/36525;return AY0+1.39688783*T+0.000307*T*T}
+function tauKind(k,sr,ss,obs,setDate){
+  var dl=ss-sr;
+  if(k==='sr')return sr;
+  if(k==='noon')return sr+dl/2;
+  if(k==='aft')return sr+dl*0.65;
+  if(k==='purv')return sr+dl*0.25;
+  if(k==='ss')return ss;
+  if(k==='ss60')return ss+3600000;
+  if(k==='mid')return ss+(86400000-dl)/2;
+  if(k==='moon'){var mq=Astronomy.SearchRiseSet('Moon',obs,+1,setDate,1);return mq?mq.date.getTime():null}
+  return sr;
+}
+function lunations(fromMs,toMs){
+  var res=[],s=new Date(fromMs-40*86400000),q;
+  for(var k=0;k<40;k++){
+    q=Astronomy.SearchMoonPhase(0,s,40);if(!q)break;
+    res.push(q.date.getTime());
+    if(q.date.getTime()>toMs+35*86400000)break;
+    s=new Date(q.date.getTime()+86400000);
+  }
+  return res;
+}
+function monthTable(nm){
+  var out=[],i,s0,s1;
+  for(i=0;i+1<nm.length;i++){
+    s0=Math.floor(sidLon('Sun',new Date(nm[i]))/30);s1=Math.floor(sidLon('Sun',new Date(nm[i+1]))/30);
+    out.push({a:nm[i],b:nm[i+1],m:(s0+1)%12,adhik:s0===s1});
+  }
+  return out;
+}
+function ingresses(key,fromMs,days){
+  var res=[],prev=Math.floor(sidLon(key,new Date(fromMs))/30),i,t,sg,lo,hi,mid;
+  for(i=1;i<=days;i++){
+    t=fromMs+i*86400000;sg=Math.floor(sidLon(key,new Date(t))/30);
+    if(sg!==prev){lo=t-86400000;hi=t;while(hi-lo>60000){mid=(lo+hi)/2;if(Math.floor(sidLon(key,new Date(mid))/30)===prev)lo=mid;else hi=mid}res.push({t:hi,sign:sg});prev=sg}
+  }
+  return res;
+}
+function stations(key,fromMs,days){
+  var res=[],prev=retro(key,new Date(fromMs)),i,t,cur,lo,hi,mid;
+  for(i=1;i<=days;i++){
+    t=fromMs+i*86400000;cur=retro(key,new Date(t));
+    if(cur!==prev){lo=t-86400000;hi=t;while(hi-lo>3600000){mid=(lo+hi)/2;if(retro(key,new Date(mid))===prev)lo=mid;else hi=mid}res.push({t:hi,r:cur});prev=cur}
+  }
+  return res;
+}
+function fdtm(ms,tz){var x=new Date(ms+tz*3600000);return pad(x.getUTCDate())+'-'+pad(x.getUTCMonth()+1)+'-'+x.getUTCFullYear()+' '+pad(x.getUTCHours())+':'+pad(x.getUTCMinutes())}
+var PLN={Sun:'सूर्य',Mars:'मंगल',Mercury:'बुध',Venus:'शुक्र',Jupiter:'गुरु',Saturn:'शनि'};
+// [name, amanta month (Chaitra=0), tithi 0-29, sample time]
+var FEST=[
+ ['उगादि और गुड़ी पड़वा',0,0,'sr'],['राम नवमी',0,8,'noon'],['हनुमान जयंती',0,14,'sr'],
+ ['अक्षय तृतीया',1,2,'purv'],['बुद्ध पूर्णिमा',1,14,'ss'],['वट सावित्री व्रत (अमावस्या)',1,29,'aft'],
+ ['रथ यात्रा',3,1,'sr'],['गुरु पूर्णिमा',3,14,'sr'],['नाग पंचमी',4,4,'noon'],['रक्षा बंधन',4,14,'aft'],
+ ['कृष्ण जन्माष्टमी',4,22,'mid'],['गणेश चतुर्थी',5,3,'noon'],['अनंत चतुर्दशी',5,13,'sr'],
+ ['शारदीय नवरात्र आरंभ',6,0,'sr'],['दुर्गा अष्टमी',6,7,'noon'],['दशहरा (विजयादशमी)',6,9,'aft'],['शरद पूर्णिमा',6,14,'ss'],
+ ['करवा चौथ',6,18,'moon'],['धनतेरस',6,27,'ss60'],['नरक चतुर्दशी',6,28,'sr'],['दीपावली',6,29,'ss60'],
+ ['गोवर्धन पूजा',7,0,'sr'],['भाई दूज',7,1,'aft'],['छठ पूजा (संध्या अर्घ्य)',7,5,'ss'],['अक्षय नवमी',7,8,'sr'],['देव उठनी एकादशी',7,10,'sr'],['कार्तिक पूर्णिमा',7,14,'ss'],
+ ['विवाह पंचमी',8,4,'sr'],['गीता जयंती (मोक्षदा एकादशी)',8,10,'sr'],
+ ['वसंत पंचमी',10,4,'purv'],['महा शिवरात्रि',10,28,'mid'],['होलिका दहन',11,14,'ss60'],['होली (रंगवाली)',11,15,'sr']
+];
+function scanRules(rules,Y,M,D,N,obs){
+  var tz=obs.tz,start=Date.UTC(Y,M-1,D)-tz*3600000,mt=monthTable(lunations(start,start+N*86400000)),hits=[],lastD={},i;
+  var monthAt=function(t){for(var j=0;j<mt.length;j++)if(t>=mt[j].a&&t<mt[j].b)return mt[j];return null};
+  for(i=0;i<N;i++){
+    var ms0=start+i*86400000,r=Astronomy.SearchRiseSet('Sun',obs.o,+1,new Date(ms0),1);if(!r)continue;
+    var s=Astronomy.SearchRiseSet('Sun',obs.o,-1,r.date,1);if(!s)continue;
+    var sr=r.date.getTime(),ss=s.date.getTime(),tc={},dd=new Date(Date.UTC(Y,M-1,D+i));
+    rules.forEach(function(f,fi){
+      var k=f[3];
+      if(!(k in tc)){var ta=tauKind(k,sr,ss,obs.o,s.date);tc[k]=ta===null?null:{t:ta,tt:tithiAt(new Date(ta))}}
+      var c=tc[k];if(!c||c.tt!==f[2])return;
+      var m=monthAt(c.t);if(!m||m.adhik||m.m!==f[1])return;
+      if(lastD[fi]===i-1){lastD[fi]=i;return}
+      lastD[fi]=i;
+      hits.push({ms:ms0,d:pad(dd.getUTCDate())+'-'+pad(dd.getUTCMonth()+1)+'-'+dd.getUTCFullYear(),w:VAAR[dd.getUTCDay()],t:f[0]});
+    });
+  }
+  return hits;
+}
+function panchInputs(errId){
+  var dp=$('pd').value.split('-'),lat=parseFloat($('plat').value),lon=parseFloat($('plon').value),tz=parseFloat($('ptz').value);
+  if(typeof Astronomy==='undefined')throw new Error('गणना लाइब्रेरी लोड नहीं हुई।');
+  if(dp.length<3||isNaN(lat)||isNaN(lon)||isNaN(tz))throw new Error('ऊपर पंचांग में तारीख, स्थान और समय क्षेत्र भरें।');
+  return {Y:+dp[0],M:+dp[1],D:+dp[2],lat:lat,lon:lon,tz:tz,obs:{o:new Astronomy.Observer(lat,lon,0),tz:tz}};
+}
+function runF(){
+  $('ferr').textContent='';
+  try{
+    var I=panchInputs();
+    var hits=scanRules(FEST,I.Y,I.M,I.D,400,I.obs);
+    var h=th(['तारीख','वार','त्योहार']);
+    hits.forEach(function(x){h+=tr([x.d,x.w,x.t])});
+    $('tfs').innerHTML=h;
+  }catch(e){$('ferr').textContent=e.message}
+}
+function runPt(){
+  $('pterr').textContent='';
+  try{
+    var I=panchInputs(),rules=[],t;
+    for(t=14;t<=29;t++)rules.push([t===14?'पूर्णिमा श्राद्ध':t===29?'सर्व पितृ अमावस्या':TITHI[t%15]+' श्राद्ध (कृष्ण)',5,t,'aft']);
+    var hits=scanRules(rules,I.Y,I.M,I.D,420,I.obs).slice(0,16);
+    var h=th(['तारीख','वार','श्राद्ध']);
+    hits.forEach(function(x){h+=tr([x.d,x.w,x.t])});
+    if(!hits.length)h+=tr(['इस अवधि में नहीं मिला','','']);
+    $('tpt').innerHTML=h;
+  }catch(e){$('pterr').textContent=e.message}
+}
+function runK(){
+  $('kerr').textContent='';
+  try{
+    var I=panchInputs(),start=Date.UTC(I.Y,I.M-1,I.D)-I.tz*3600000;
+    var h=th(['तारीख','वार','समय','संक्रांति']);
+    ingresses('Sun',start,400).forEach(function(g){
+      var x=new Date(g.t+I.tz*3600000);
+      h+=tr([pad(x.getUTCDate())+'-'+pad(x.getUTCMonth()+1)+'-'+x.getUTCFullYear(),VAAR[x.getUTCDay()],ft(g.t,I.tz),(g.sign===9?'मकर संक्रांति':RASHI[g.sign]+' संक्रांति')+' (सूर्य '+RASHI[g.sign]+' में)']);
+    });
+    $('tsk').innerHTML=h;
+  }catch(e){$('kerr').textContent=e.message}
+}
+function runG(){
+  $('gerr').textContent='';
+  try{
+    var I=panchInputs(),tz=I.tz;
+    var now=new Date(),pl=positions(now).pl,sunLon=pl[0].lon,TH=[0,12,17,14,11,10,15];
+    var g=th(['ग्रह','राशि · अंश','नक्षत्र','गति','स्थिति']);
+    pl.forEach(function(p,i){
+      var sg=Math.floor(p.lon/30),n=Math.floor(p.lon/SPAN),rt=i>=7?true:(i>=2?retro(PL[i].k,now):false),stt='—';
+      if(i===1||(i>=2&&i<7)){
+        var sep=Math.abs(p.lon-sunLon);if(sep>180)sep=360-sep;
+        var lim=TH[i];if(i===3&&rt)lim=12;if(i===5&&rt)lim=8;
+        stt=sep<lim?'अस्त':'उदित';
+      }
+      g+=tr([p.n,RASHI[sg]+' '+dm(p.lon%30),NAK[n],i>=7?'वक्री (सदा)':(rt?'वक्री':'मार्गी'),stt],((rt&&i>=2&&i<7)||stt==='अस्त')?'now':'');
+    });
+    $('tgs').innerHTML=g;
+    var from=now.getTime(),ev=[];
+    Object.keys(PLN).forEach(function(k){
+      ingresses(k,from,400).forEach(function(x){ev.push({t:x.t,s:PLN[k]+' का '+RASHI[x.sign]+' राशि में प्रवेश'})});
+      if(k!=='Sun')stations(k,from,400).forEach(function(x){ev.push({t:x.t,s:PLN[k]+(x.r?' वक्री होगा':' मार्गी होगा')})});
+    });
+    ev.sort(function(a,b){return a.t-b.t});
+    var eh=th(['समय','घटना']);ev.forEach(function(e){eh+=tr([fdtm(e.t,tz),e.s])});
+    $('tge').innerHTML=eh;
+    var rows=[],t0=new Date(),le,se,k,tm,eq,hr;
+    var LK={penumbral:'उपच्छाया',partial:'आंशिक',total:'पूर्ण'},SK={partial:'आंशिक',annular:'वलयाकार',total:'पूर्ण',hybrid:'संकर'};
+    try{
+      le=Astronomy.SearchLunarEclipse(t0);
+      for(k=0;k<4;k++){
+        tm=le.peak;eq=Astronomy.Equator('Moon',tm,I.obs.o,true,true);hr=Astronomy.Horizon(tm,I.obs.o,eq.ra,eq.dec,'normal');
+        rows.push({ms:tm.date.getTime(),a:'चंद्र ग्रहण',b:LK[String(le.kind).toLowerCase()]||String(le.kind),c:hr.altitude>0?'चरम पर चंद्र क्षितिज से ऊपर, दिखाई देगा':'चरम पर चंद्र क्षितिज के नीचे, यहाँ से नहीं दिखेगा'});
+        le=Astronomy.NextLunarEclipse(le.peak);
+      }
+    }catch(e3){}
+    try{
+      se=Astronomy.SearchLocalSolarEclipse(t0,I.obs.o);
+      for(k=0;k<4;k++){
+        tm=se.peak.time;
+        rows.push({ms:tm.date.getTime(),a:'सूर्य ग्रहण',b:SK[String(se.kind).toLowerCase()]||String(se.kind),c:se.peak.altitude>0?'चरम पर सूर्य क्षितिज से ऊपर, दिखाई देगा':'चरम पर सूर्य क्षितिज के नीचे, यहाँ से नहीं दिखेगा'});
+        se=Astronomy.NextLocalSolarEclipse(se.peak.time,I.obs.o);
+      }
+    }catch(e4){}
+    rows.sort(function(a,b){return a.ms-b.ms});
+    var ec=th(['ग्रहण','प्रकार','चरम समय','दृश्यता']);
+    rows.forEach(function(x){ec+=tr([x.a,x.b,fdtm(x.ms,tz),x.c])});
+    if(!rows.length)ec+=tr(['गणना नहीं हो सकी','','','']);
+    $('tgr').innerHTML=ec;
+    var yr=now.getUTCFullYear(),sea=Astronomy.Seasons(yr),sl=pl[0].lon,sgn=Math.floor(sl/30),RT=['वसंत','ग्रीष्म','वर्षा','शरद','हेमंत','शिशिर'];
+    var ru=th(['विवरण','समय / स्थिति']);
+    ru+=tr(['अभी की ऋतु (सूर्य '+RASHI[sgn]+' में)',RT[Math.floor(((sgn+1)%12)/2)]]);
+    ru+=tr(['अभी का अयन',(sl>=270||sl<90)?'उत्तरायण (सूर्य मकर से मिथुन तक)':'दक्षिणायन (सूर्य कर्क से धनु तक)']);
+    ru+=tr(['वसंत विषुव '+yr,fdtm(sea.mar_equinox.date.getTime(),tz)]);
+    ru+=tr(['ग्रीष्म अयनांत (सायन) '+yr,fdtm(sea.jun_solstice.date.getTime(),tz)]);
+    ru+=tr(['शरद विषुव '+yr,fdtm(sea.sep_equinox.date.getTime(),tz)]);
+    ru+=tr(['शीत अयनांत (सायन) '+yr,fdtm(sea.dec_solstice.date.getTime(),tz)]);
+    $('trt2').innerHTML=ru;
+    $('gout').hidden=false;
+  }catch(e){$('gerr').textContent=e.message}
+}
+function runQK(){
+  var tzv=parseFloat($('tz').value);if(isNaN(tzv))tzv=5.5;
+  var x=new Date(Date.now()+tzv*3600000),keep=$('nm').value,keepD=$('dt').value,keepT=$('tm').value;
+  $('dt').value=x.getUTCFullYear()+'-'+pad(x.getUTCMonth()+1)+'-'+pad(x.getUTCDate());
+  $('tm').value=pad(x.getUTCHours())+':'+pad(x.getUTCMinutes());
+  $('nm').value='';
+  run();
+  $('ttl').textContent='प्रश्न कुंडली · '+pad(x.getUTCDate())+'-'+pad(x.getUTCMonth()+1)+'-'+x.getUTCFullYear()+' '+pad(x.getUTCHours())+':'+pad(x.getUTCMinutes());
+  $('nm').value=keep;$('dt').value=keepD;$('tm').value=keepT;
+  $('out').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ---- wiring
+function fillCity(sel){CITIES.forEach(function(c,i){var o=document.createElement('option');o.value=i;o.textContent=c[0];sel.appendChild(o)});sel.value=0}
+var sel=$('city'),psel=$('pcity');
+fillCity(sel);fillCity(psel);
+sel.addEventListener('change',function(){var c=CITIES[sel.value];if(c[1]!==null){$('lat').value=c[1];$('lon').value=c[2]}});
+['lat','lon'].forEach(function(i){$(i).addEventListener('input',function(){sel.value=CITIES.length-1})});
+psel.addEventListener('change',function(){var c=CITIES[psel.value];if(c[1]!==null){$('plat').value=c[1];$('plon').value=c[2]}});
+['plat','plon'].forEach(function(i){$(i).addEventListener('input',function(){psel.value=CITIES.length-1})});
+var csel=$('ccity');fillCity(csel);
+csel.addEventListener('change',function(){var c=CITIES[csel.value];if(c[1]!==null){$('clat').value=c[1];$('clon').value=c[2]}});
+['clat','clon'].forEach(function(i){$(i).addEventListener('input',function(){csel.value=CITIES.length-1})});
+VRAT.forEach(function(v,i){var o=document.createElement('option');o.value=i;o.textContent=v[0];$('vt').appendChild(o)});
+$('pd').value=new Date(Date.now()+5.5*3600000).toISOString().slice(0,10);
+$('f').addEventListener('submit',function(e){e.preventDefault();run();$('out').scrollIntoView({behavior:'smooth',block:'start'})});
+$('fm').addEventListener('submit',function(e){e.preventDefault();runM()});
+$('fp').addEventListener('submit',function(e){e.preventDefault();runP()});
+$('fc').addEventListener('submit',function(e){e.preventDefault();runC()});
+$('vgo').addEventListener('click',runV);
+$('sgo').addEventListener('click',runS);
+$('fgo').addEventListener('click',runF);
+$('pgo').addEventListener('click',runPt);
+$('kgo').addEventListener('click',runK);
+$('ggo').addEventListener('click',runG);
+$('qk').addEventListener('click',runQK);
+document.querySelectorAll('.seg button').forEach(function(b){b.addEventListener('click',function(){cstyle=b.dataset.s;renderCharts()})});
+var mb=$('mb'),menu=$('menu');
+mb.addEventListener('click',function(){var o=menu.hidden;menu.hidden=!o;mb.setAttribute('aria-expanded',String(o))});
+menu.addEventListener('click',function(e){if(e.target.tagName==='A'){menu.hidden=true;mb.setAttribute('aria-expanded','false')}});
+document.querySelectorAll('.copy').forEach(function(b){
+  b.addEventListener('click',function(){
+    var el=$(b.dataset.t);
+    var done=function(){b.textContent='कॉपी हो गया';setTimeout(function(){b.textContent='कॉपी'},1800)};
+    var pick=function(){var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r)};
+    try{navigator.clipboard.writeText(el.textContent).then(done,pick)}catch(x){pick()}
+  });
+});
+run();runM();runP();setTimeout(runV,300);setTimeout(runF,700);setTimeout(runPt,1100);setTimeout(runK,1300);
+})();
+</script>
+</body>
+</html>
