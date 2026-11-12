@@ -1,0 +1,13 @@
+
+{
+  "name": "Jyotish Kundali",
+  "short_name": "Jyotish",
+  "description": "Free Vedic Janam Kundali, Panchang, Vivah Milan and Astrology Tools",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f2f2f8",
+  "theme_color": "#1c1f4a",
+  "lang": "hi"
+}
