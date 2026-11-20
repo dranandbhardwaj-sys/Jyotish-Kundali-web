@@ -4,16 +4,4 @@
     <loc>https://dranandbhardwaj-sys.github.io/Jyotish-Kundali-web/</loc>
     <priority>1.0</priority>
   </url>
-  <url>
-    <loc>https://dranandbhardwaj-sys.github.io/Jyotish-Kundali-web/about.html</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://dranandbhardwaj-sys.github.io/Jyotish-Kundali-web/privacy-policy.html</loc>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://dranandbhardwaj-sys.github.io/Jyotish-Kundali-web/disclaimer.html</loc>
-    <priority>0.5</priority>
-  </url>
 </urlset>
