@@ -2,16 +2,35 @@
 <html lang="hi">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">,<meta name="google-site-verification" content="SasSBSbBE70boyYhwhW5-3M1mvha6g3pOFC-mw4LddY" />
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="google-site-verification" content="SasSBSbBE70boyYhwhW5-3M1mvha6g3pOFC-mw4LddY" />
+<link rel="canonical" href="https://dranandbhardwaj-sys.github.io/Jyotish-Kundali-web/">
 <title>Jyotish Kundali | मुफ़्त वैदिक जन्म कुंडली, पंचांग और विवाह मिलान</title>
-<meta property="og:title" content="Jyotish Kundali">
+<meta property="og:title" content="Jyotish Kundali | डॉ. आनंद भारद्वाज">
 <meta property="og:description" content="मुफ़्त वैदिक जन्म कुंडली, नवांश, महादशा, विवाह मिलान, पंचांग, त्योहार और मुहूर्त।">
+<meta property="og:url" content="https://dranandbhardwaj-sys.github.io/Jyotish-Kundali-web/">
 <meta property="og:type" content="website">
 <meta name="description" content="Jyotish Kundali: muft Vedic janam kundali, navamsa, mahadasha, gochar, vivah milan, panchang, muhurta, rashifal aur jyotish calculators. Dr. Anand Bhardwaj.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600&family=Tiro+Devanagari+Hindi&display=swap">
 <script src="https://cdn.jsdelivr.net/npm/astronomy-engine@2.1.19/astronomy.browser.min.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Jyotish Kundali",
+  "url": "https://dranandbhardwaj-sys.github.io/Jyotish-Kundali-web/",
+  "applicationCategory": "LifestyleApplication",
+  "inLanguage": "hi",
+  "description": "मुफ़्त वैदिक जन्म कुंडली, नवांश, विंशोत्तरी महादशा, विवाह मिलान, पंचांग, मुहूर्त और राशिफल।",
+  "author": {
+    "@type": "Person",
+    "name": "डॉ. आनंद भारद्वाज",
+    "email": "dranandbhardwaj@gmail.com",
+    "telephone": "+91-9162172749"
+  }
+}
+</script>
 <style>
-/* Layout: tool-site shell. Header with menu panel, then stacked tool panels (kundali, milan, panchang with sub-tools, calculators), guidance, FAQ and contact. */
 :root{
   --bg:#f2f2f8; --surface:#ffffff; --fg:#1c1f4a; --muted:#565a86; --line:#cfd1e6;
   --accent:#b86e00; --accent-fg:#ffffff; --chart:#1c1f4a; --planet:#a3261c; --tint:#e8e9f6; --ok:#1f6b45;
@@ -25,25 +44,30 @@
   --bg:#14163a; --surface:#1d2050; --fg:#eceefb; --muted:#aab0dc; --line:#343878;
   --accent:#f2b134; --accent-fg:#14163a; --chart:#eceefb; --planet:#ff9a8a; --tint:#262a63; --ok:#7fd1a4; color-scheme:dark}
 *{box-sizing:border-box}
-body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.6;
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.6;
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0}
 .wrap{max-width:1040px;margin:0 auto}
 h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.25;text-wrap:balance;margin:0}
 .label{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600}
 a{color:var(--accent)}
 :focus-visible{outline:3px solid var(--accent);outline-offset:3px}
-header.top{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
+header.top{display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}
 .brand{font-family:var(--display);font-size:24px;text-decoration:none;color:var(--fg)}
-.menubtn{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--fg);border:1.5px solid var(--line);border-radius:6px;padding:8px 12px;font:500 15px var(--body);cursor:pointer;margin-left:auto}
+.head-actions{margin-left:auto;display:flex;gap:8px;align-items:center}
+.menubtn{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--fg);border:1.5px solid var(--line);border-radius:6px;padding:8px 12px;font:500 15px var(--body);cursor:pointer}
 #menu{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px 20px 14px;margin-top:10px}
 #menu h3{font-size:15px;color:var(--accent);font-family:var(--body);font-weight:600;padding:14px 0 6px;border-bottom:1px solid var(--line);margin-bottom:4px}
 #menu ul{list-style:none;margin:0;padding:0;columns:2 240px;column-gap:28px}
 #menu li{padding:7px 0;break-inside:avoid}
 #menu a{text-decoration:none;color:var(--fg)}
 #menu a:hover{color:var(--accent)}
-.intro{padding:36px 0 20px;max-width:46em}
+.intro{padding:32px 0 14px;max-width:46em}
 h1{font-size:clamp(30px,5.5vw,48px)}
-.intro p{color:var(--muted);margin:14px 0 0}
+.intro p{color:var(--muted);margin:12px 0 0}
+.qnav{display:flex;gap:8px;flex-wrap:wrap;padding:6px 0 8px}
+.qnav a{background:var(--surface);border:1px solid var(--line);color:var(--fg);text-decoration:none;padding:6px 13px;border-radius:20px;font-size:14px;font-weight:500}
+.qnav a:hover{border-color:var(--accent);color:var(--accent)}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:22px;margin-top:20px}
 .panel h2{font-size:24px;margin-bottom:6px}
 .hint{font-size:14px;color:var(--muted);margin:0 0 16px}
@@ -51,14 +75,15 @@ form{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1
 label{display:flex;flex-direction:column;gap:4px;font-size:14px;color:var(--muted);min-width:0}
 input,select{font:16px var(--body);color:var(--fg);background:var(--bg);border:1.5px solid var(--line);border-radius:6px;padding:10px 12px;width:100%;min-width:0}
 .go{grid-column:1/-1;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
-.btn{background:var(--accent);color:var(--accent-fg);border:0;border-radius:6px;padding:12px 26px;font:600 16px var(--body);cursor:pointer}
+.btn{background:var(--accent);color:var(--accent-fg);border:0;border-radius:6px;padding:12px 26px;font:600 16px var(--body);cursor:pointer;text-decoration:none;display:inline-block}
+.btn-sm{padding:8px 16px;font-size:14px}
 .tag{font-size:12px;color:var(--ok);border:1px solid var(--ok);border-radius:10px;padding:1px 10px}
 .summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:0 0 20px}
 .summary.two{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
 .summary div{background:var(--tint);border-radius:8px;padding:10px 14px;min-width:0}
 .summary small{display:block;font-size:12px;color:var(--muted);letter-spacing:.06em}
 .summary b{font-family:var(--display);font-weight:400;font-size:20px}
-.seg{display:flex;gap:8px;margin:0 0 14px;flex-wrap:wrap}
+.seg{display:flex;gap:8px;margin:0 0 14px;flex-wrap:wrap;align-items:center}
 .seg button{background:transparent;color:var(--fg);border:1.5px solid var(--line);border-radius:6px;padding:6px 16px;font:500 15px var(--body);cursor:pointer}
 .seg button[aria-pressed="true"]{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
 .charts{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
@@ -86,28 +111,37 @@ details p{margin:8px 0 0;color:var(--muted)}
 .row2{display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap;margin:8px 0}
 .row2 label{flex:1 1 160px}
 .val{font-weight:600;user-select:all;overflow-wrap:anywhere}
-.copy{background:transparent;color:var(--accent);border:1.5px solid var(--line);border-radius:6px;padding:4px 12px;font:500 14px var(--body);cursor:pointer}
+.copy{background:transparent;color:var(--accent);border:1.5px solid var(--line);border-radius:6px;padding:4px 12px;font:500 14px var(--body);cursor:pointer;text-decoration:none;display:inline-block}
 .dos p{margin:8px 0;color:var(--muted)}
 .dos b{color:var(--fg)}
 .qg{color:var(--ok);font-weight:600}
 .qb{color:var(--planet)}
 .rcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin-top:10px}
-.rc{background:var(--tint);border-radius:8px;padding:12px 14px;min-width:0}
+.rc{background:var(--tint);border-radius:8px;padding:14px 16px;min-width:0}
 .rc b{font-family:var(--display);font-weight:400;font-size:19px}
 .rc small{margin-left:8px}
-.rc p{margin:4px 0 0;color:var(--muted);font-size:15px}
-footer{margin-top:40px;padding:24px 0 40px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
+.rc p{margin:6px 0 0;color:var(--muted);font-size:15px}
+.rc.featured{border:1.5px solid var(--accent)}
+.fab{position:fixed;bottom:18px;right:18px;background:#1f6b45;color:#ffffff;padding:11px 18px;border-radius:50px;text-decoration:none;font-weight:600;font-size:15px;box-shadow:0 4px 14px rgba(0,0,0,0.28);z-index:999;display:inline-flex;align-items:center;gap:6px}
+.fab:hover{opacity:.94}
+footer{margin-top:40px;padding:24px 0 88px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
 #err,.err{color:var(--planet);font-weight:600}
-body{margin:0}
+@media print{
+  header.top,#menu,.qnav,#kundali form,.seg,.fab,#sampark .rcards,#sampark .panel:last-of-type{display:none!important}
+  .panel{border:1px solid #999;break-inside:avoid}
+}
 </style>
 </head>
 <body>
 <div class="wrap">
   <header class="top">
     <a class="brand" href="#top">ज्योतिष कुंडली</a>
-    <button class="menubtn" id="mb" type="button" aria-expanded="false" aria-controls="menu">
-      <svg width="18" height="14" viewBox="0 0 18 14" aria-hidden="true"><path d="M0 1h18M0 7h18M0 13h18" stroke="currentColor" stroke-width="2"/></svg>मेनू
-    </button>
+    <div class="head-actions">
+      <button class="menubtn" id="thbtn" type="button" aria-label="थीम बदलें">🌙</button>
+      <button class="menubtn" id="mb" type="button" aria-expanded="false" aria-controls="menu">
+        <svg width="18" height="14" viewBox="0 0 18 14" aria-hidden="true"><path d="M0 1h18M0 7h18M0 13h18" stroke="currentColor" stroke-width="2"/></svg>मेनू
+      </button>
+    </div>
   </header>
 
   <nav id="menu" hidden aria-label="मुख्य मेनू">
@@ -165,6 +199,7 @@ body{margin:0}
     <ul>
       <li><a href="#sampark">संपूर्ण कुंडली रिपोर्ट (PDF)</a></li>
       <li><a href="#sampark">व्यक्तिगत परामर्श</a></li>
+      <li><a href="#samagri">ज्योतिष एवं पूजा सामग्री</a></li>
     </ul>
   </nav>
 
@@ -173,6 +208,17 @@ body{margin:0}
     <h1>मुफ़्त वैदिक जन्म कुंडली</h1>
     <p>जन्म तिथि, समय और स्थान डालें। कुंडली, नवांश, ग्रह और भाव विवरण, महादशा, गोचर, दोष, रत्न, विवाह मिलान, पंचांग और मुहूर्त एक ही साइट पर।</p>
   </div>
+
+  <nav class="qnav" aria-label="त्वरित लिंक">
+    <a href="#kundali">जन्म कुंडली</a>
+    <a href="#milan">विवाह मिलान</a>
+    <a href="#panchang">पंचांग व मुहूर्त</a>
+    <a href="#rashifal">राशिफल</a>
+    <a href="#vrat">व्रत व त्योहार</a>
+    <a href="#graha">नवग्रह</a>
+    <a href="#calc">कैलकुलेटर</a>
+    <a href="#sampark" style="border-color:var(--accent);color:var(--accent)">व्यक्तिगत परामर्श</a>
+  </nav>
 
   <div class="panel" id="kundali">
     <h2>जन्म विवरण भरें</h2>
@@ -193,9 +239,11 @@ body{margin:0}
     <h2 id="ttl">कुंडली</h2>
     <p class="hint" id="meta"></p>
     <div class="summary" id="sum"></div>
-    <div class="seg" role="group" aria-label="कुंडली शैली">
+    <div class="seg" role="group" aria-label="कुंडली शैली और विकल्प">
       <button type="button" data-s="N" aria-pressed="true">उत्तर भारतीय</button>
       <button type="button" data-s="S" aria-pressed="false">दक्षिण भारतीय</button>
+      <button type="button" class="copy" id="prbtn" style="margin-left:auto">🖨️ प्रिंट / PDF</button>
+      <a class="copy" id="wak" style="border-color:var(--ok);color:var(--ok)" target="_blank" rel="noopener" href="https://wa.me/919162172749">📲 इस कुंडली पर परामर्श लें</a>
     </div>
     <div class="charts">
       <figure><div id="c1"></div><figcaption>लग्न कुंडली (D1)</figcaption></figure>
@@ -380,18 +428,82 @@ body{margin:0}
   </section>
 
   <section class="info" id="sampark">
-    <span class="label">संपर्क</span>
+    <span class="label">सशुल्क सेवाएँ और संपर्क</span>
     <h2>परामर्श और संपूर्ण कुंडली रिपोर्ट</h2>
+
+    <div class="rcards" style="margin-bottom:20px">
+      <div class="rc featured">
+        <b>📞 व्यक्तिगत कुंडली परामर्श</b>
+        <small class="qg">₹501</small>
+        <p>विवाह, करियर, व्यापार, संतान, मंगल दोष या ग्रह शांति पर डॉ. आनंद भारद्वाज जी से सीधे फ़ोन या WhatsApp पर विस्तृत परामर्श।</p>
+        <p style="margin-top:12px">
+          <a class="btn btn-sm" href="https://wa.me/919162172749?text=Namaste%20Dr.%20Anand%20Bhardwaj%20ji,%20mujhe%20vyaktigat%20Kundli%20consultation%20(Rs.%20501)%20book%20karni%20hai." target="_blank" rel="noopener">WhatsApp पर बुक करें</a>
+        </p>
+      </div>
+      <div class="rc" style="border:1px solid var(--line)">
+        <b>📄 संपूर्ण कुंडली रिपोर्ट (PDF)</b>
+        <small class="qg">₹251</small>
+        <p>लग्न, नवांश, महादशा-अंतर्दशा फल, दोष विश्लेषण, रत्न और वैदिक उपायों सहित तैयार की गई संपूर्ण PDF रिपोर्ट।</p>
+        <p style="margin-top:12px">
+          <a class="btn btn-sm" href="https://wa.me/919162172749?text=Namaste%20Dr.%20Anand%20Bhardwaj%20ji,%20mujhe%20sampurna%20Kundli%20PDF%20report%20(Rs.%20251)%20chahiye." target="_blank" rel="noopener">PDF ऑर्डर करें</a>
+        </p>
+      </div>
+      <div class="rc" style="border:1px solid var(--line)">
+        <b>💍 विवाह मिलान व मांगलिक विश्लेषण</b>
+        <small class="qg">₹351</small>
+        <p>वर-वधू अष्टकूट गुण, नाड़ी/भकूट परिहार, सप्तम भाव और वैवाहिक सुख का गहन ज्योतिषीय परीक्षण।</p>
+        <p style="margin-top:12px">
+          <a class="btn btn-sm" href="https://wa.me/919162172749?text=Namaste%20Dr.%20Anand%20Bhardwaj%20ji,%20mujhe%20Vivah%20Milan%20paramarsh%20(Rs.%20351)%20chahiye." target="_blank" rel="noopener">मिलान करवाएँ</a>
+        </p>
+      </div>
+    </div>
+
     <div class="panel" style="margin-top:0">
-      <div class="row"><b>ज्योतिषी</b><span class="val">डॉ. आनंद भारद्वाज</span></div>
-      <div class="row"><b>मोबाइल</b><span class="val" id="ph">9162172749</span><button class="copy" type="button" data-t="ph">कॉपी</button></div>
-      <div class="row"><b>ईमेल</b><span class="val" id="em">dranandbhardwaj@gmail.com</span><button class="copy" type="button" data-t="em">कॉपी</button></div>
+      <div class="row"><b>ज्योतिषी</b><span class="val">डॉ. आनंद भारद्वाज (वैदिक ज्योतिष एवं कुंडली विशेषज्ञ)</span></div>
+      <div class="row">
+        <b>मोबाइल</b>
+        <span class="val" id="ph">9162172749</span>
+        <button class="copy" type="button" data-t="ph">कॉपी</button>
+        <a class="copy" href="tel:+919162172749">कॉल करें</a>
+        <a class="copy" style="border-color:var(--ok);color:var(--ok)" href="https://wa.me/919162172749" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+      <div class="row">
+        <b>ईमेल</b>
+        <span class="val" id="em">dranandbhardwaj@gmail.com</span>
+        <button class="copy" type="button" data-t="em">कॉपी</button>
+        <a class="copy" href="mailto:dranandbhardwaj@gmail.com">ईमेल भेजें</a>
+      </div>
       <div class="row"><b>ऐप</b><span class="val">Android ऐप जल्द आ रहा है</span></div>
+    </div>
+
+    <!-- Amazon Associates बनने पर ?tag=YOUR_TAG-21 लिंक के अंत में जोड़ें -->
+    <div class="panel" id="samagri" style="margin-top:20px">
+      <h2>प्रामाणिक ज्योतिष एवं पूजा सामग्री</h2>
+      <p class="hint">ग्रह शांति, साधना और अध्ययन के लिए उपयोगी सामग्री (Amazon पर उपलब्ध):</p>
+      <div class="rcards">
+        <div class="rc">
+          <b>📿 5 मुखी रुद्राक्ष माला</b>
+          <p>ध्यान, मंत्र जप और मानसिक शांति के लिए प्रमाणित नेपाली रुद्राक्ष।</p>
+          <p style="margin-top:8px"><a href="https://www.amazon.in/s?k=5+mukhi+rudraksha+mala+lab+certified" target="_blank" rel="nofollow sponsored noopener">Amazon पर देखें →</a></p>
+        </div>
+        <div class="rc">
+          <b>🔱 श्री यंत्र / नवग्रह शांति यंत्र</b>
+          <p>घर और व्यापार में सकारात्मक ऊर्जा, शांति और समृद्धि के लिए।</p>
+          <p style="margin-top:8px"><a href="https://www.amazon.in/s?k=shri+yantra+navgraha+yantra+brass" target="_blank" rel="nofollow sponsored noopener">Amazon पर देखें →</a></p>
+        </div>
+        <div class="rc">
+          <b>📚 वैदिक ज्योतिष व लाल किताब</b>
+          <p>ज्योतिष सीखने और पारंपरिक उपायों के गहन अध्ययन के लिए पुस्तकें।</p>
+          <p style="margin-top:8px"><a href="https://www.amazon.in/s?k=vedic+jyotish+lal+kitab+hindi+book" target="_blank" rel="nofollow sponsored noopener">किताबें देखें →</a></p>
+        </div>
+      </div>
     </div>
   </section>
 
   <footer>© 2026 Jyotish Kundali · डॉ. आनंद भारद्वाज · ज्योतिष परंपरा का अध्ययन है, चिकित्सा, कानूनी या वित्तीय सलाह नहीं।</footer>
 </div>
+
+<a class="fab" href="https://wa.me/919162172749?text=Namaste%20Dr.%20Anand%20Bhardwaj%20ji,%20mujhe%20Kundli%20paramarsh%20chahiye." target="_blank" rel="noopener" aria-label="WhatsApp पर परामर्श लें">💬 WhatsApp परामर्श</a>
 
 <script>
 (function(){
@@ -434,7 +546,6 @@ function positions(date){
   out.push({n:'राहु',a:'रा',lon:rahu});out.push({n:'केतु',a:'के',lon:norm(rahu+180)});
   return {pl:out,ay:ay};
 }
-// Lagna uses sidereal time with the delta-T shift, so it matches Drik Panchang's convention.
 function lagna(date,lat,lon,ay){
   var d=date.getTime()/86400000+2440587.5-2451545+deltaT(date)/86400,T=d/36525;
   var gmst=280.46061837+360.98564736629*d+0.000387933*T*T;
@@ -452,7 +563,6 @@ function dashas(moon,birth){
   for(var k=0;k<9;k++){var idx=(i+k)%9,yrs=k===0?DY[idx]*(1-f):DY[idx],end=cur+yrs*365.25*86400000;res.push({n:DL[idx],s:new Date(cur),e:new Date(end)});cur=end}
   return res;
 }
-// ---- charts
 var HC=[null,[200,95,200,140],[105,62,105,28],[55,105,24,105],[90,200,150,200],[55,295,24,295],[105,345,105,382],[200,305,200,262],[295,345,295,382],[345,295,376,295],[310,200,250,200],[345,105,376,105],[295,62,295,28]];
 function chartN(lagSign,planets){
   var byH={},h;
@@ -492,9 +602,8 @@ function renderCharts(){
   var f=cstyle==='N'?chartN:chartS;
   $('c1').innerHTML=f(last.l1,last.p1);
   $('c9').innerHTML=f(last.l9,last.p9);
-  document.querySelectorAll('.seg button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.s===cstyle))});
+  document.querySelectorAll('.seg button[data-s]').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.s===cstyle))});
 }
-// ---- Kundali
 var natal=null;
 function gochar(){
   var now=new Date(),g=positions(now).pl;
@@ -536,12 +645,14 @@ function run(){
     var moon=pl[1].lon,moonSign=Math.floor(moon/30),nk=Math.floor(moon/SPAN),pada=Math.floor((moon-nk*SPAN)/(SPAN/4))+1;
     natal={lagSign:lagSign,moonSign:moonSign};
     var house=function(p){return ((Math.floor(p.lon/30)-lagSign+12)%12)+1};
-    $('ttl').textContent=($('nm').value.trim()?$('nm').value.trim()+' की ':'')+'जन्म कुंडली';
+    var nmVal=$('nm').value.trim();
+    $('ttl').textContent=(nmVal?nmVal+' की ':'')+'जन्म कुंडली';
     $('meta').textContent=dp[2]+'-'+dp[1]+'-'+dp[0]+' · '+$('tm').value+' · अक्षांश '+lat+', देशांतर '+lon+' · अयनांश '+dm(P.ay);
     $('sum').innerHTML='<div><small>लग्न</small><b>'+RASHI[lagSign]+' '+dm(asc%30)+'</b></div><div><small>चंद्र राशि</small><b>'+RASHI[moonSign]+'</b></div><div><small>जन्म नक्षत्र</small><b>'+NAK[nk]+' · पद '+pada+'</b></div><div><small>सूर्य राशि</small><b>'+RASHI[Math.floor(pl[0].lon/30)]+'</b></div><div><small>नाम अक्षर</small><b>'+NA[nk][pada-1]+'</b></div>';
+    var waMsg='Namaste Dr. Anand Bhardwaj ji, mujhe is Kundli par paramarsh chahiye:\nNaam: '+(nmVal||'Kundli')+'\nDOB: '+dp[2]+'-'+dp[1]+'-'+dp[0]+' '+$('tm').value+'\nLagna: '+RASHI[lagSign]+'\nRashi: '+RASHI[moonSign]+'\nNakshatra: '+NAK[nk]+' (Pad '+pada+')';
+    $('wak').href='https://wa.me/919162172749?text='+encodeURIComponent(waMsg);
     last={l1:lagSign,p1:pl.map(function(p){return{a:p.a,sign:Math.floor(p.lon/30)+1}}),l9:Math.floor(asc*9/30)%12,p9:pl.map(function(p){return{a:p.a,sign:(Math.floor(p.lon*9/30)%12)+1}})};
     renderCharts();
-    // planets table
     var t=th(['ग्रह','राशि · अंश','नक्षत्र · पद','नक्षत्र स्वामी / उप स्वामी','भाव','शासक','घर का स्वामी','संबंध','गरिमा','गति']);
     var an=Math.floor(asc/SPAN),al=nakLords(asc);
     t+=tr(['लग्न',RASHI[lagSign]+' '+dm(asc%30),NAK[an]+' '+(Math.floor((asc-an*SPAN)/(SPAN/4))+1),al[0]+', '+al[1],1,'',PL[LORD[lagSign]].n,'','','']);
@@ -556,7 +667,6 @@ function run(){
       t+=tr([p.n,RASHI[sg]+' '+dm(p.lon%30),NAK[n]+' '+pd,lo[0]+', '+lo[1],house(p),rules.length?rules.join(', ')+' भाव का':'',owner,rel,dig,p.r?'वक्री':'मार्गी']);
     });
     $('tpl').innerHTML=t;
-    // houses table
     var bh=th(['भाव','निवासी','स्वामी','राशि','गुण','दृष्टि']),occ,asp,sgI,hp;
     for(h=1;h<=12;h++){
       sgI=(lagSign+h-1)%12;occ=[];asp=[];
@@ -569,12 +679,10 @@ function run(){
     ds.forEach(function(d){dh+=tr([d.n,fd(d.s),fd(d.e)],(now>=d.s&&now<d.e)?'now':'')});
     $('tds').innerHTML=dh;
     gochar();
-    // doshas
     var mt=doshHtml(pl,lagSign,moonSign);
     var sat=Math.floor(positions(new Date()).pl[6].lon/30),sd=(sat-moonSign+12)%12;
     mt+='<p><b>साढ़े साती:</b> आज शनि '+RASHI[sat]+' में है, आपकी चंद्र राशि '+RASHI[moonSign]+' से '+(sd+1)+' भाव में। '+(sd===11?'साढ़े साती का पहला चरण चल रहा है।':sd===0?'साढ़े साती का दूसरा चरण चल रहा है।':sd===1?'साढ़े साती का तीसरा चरण चल रहा है।':(sd===3||sd===7)?'शनि की ढैया की स्थिति है।':'अभी साढ़े साती या ढैया नहीं है।')+' पूरे जीवन की साढ़े साती की तिथियाँ नीचे कैलकुलेटर में हैं।</p>';
     $('dos').innerHTML=mt;
-    // gems and rudraksha
     var g1=LORD[lagSign],g5=LORD[(lagSign+4)%12],g9=LORD[(lagSign+8)%12];
     $('trt').innerHTML=th(['किस आधार पर','ग्रह','रत्न'])+tr(['लग्नेश (जीवन रत्न)',PL[g1].n,GEM[g1]])+tr(['पंचमेश (कारक रत्न)',PL[g5].n,GEM[g5]])+tr(['नवमेश (भाग्य रत्न)',PL[g9].n,GEM[g9]]);
     var ml=LORD[moonSign];
@@ -583,7 +691,6 @@ function run(){
   }catch(e){$('err').textContent=e.message}
 }
 
-// ---- Vivah Milan (Ashtakoota)
 var VR=[3,2,1,4,3,2,1,4,3,2,1,4],VN=['','शूद्र','वैश्य','क्षत्रिय','ब्राह्मण'];
 var VGN=['चतुष्पद','मानव','जलचर','वनचर','कीट'],VT=[[2,1,1,0.5,1],[1,2,0.5,0,1],[1,0.5,2,1,1],[0,0,0,2,0],[1,1,1,0,2]];
 function vashya(l){var s=Math.floor(l/30),h=(l%30)>=15;return [0,0,1,2,3,1,1,4,h?0:1,h?2:0,1,2][s]}
@@ -631,7 +738,6 @@ function runM(){
   }catch(e){$('merr').textContent=e.message}
 }
 
-// ---- Panchang, muhurta, rashifal, vedic time, vrat, shraddh
 var TITHI=['प्रतिपदा','द्वितीया','तृतीया','चतुर्थी','पंचमी','षष्ठी','सप्तमी','अष्टमी','नवमी','दशमी','एकादशी','द्वादशी','त्रयोदशी','चतुर्दशी'];
 function tname(t){return (t<15?'शुक्ल ':'कृष्ण ')+(t===14?'पूर्णिमा':t===29?'अमावस्या':TITHI[t%15])}
 var YOGA=['विष्कुंभ','प्रीति','आयुष्मान','सौभाग्य','शोभन','अतिगंड','सुकर्मा','धृति','शूल','गंड','वृद्धि','ध्रुव','व्याघात','हर्षण','वज्र','सिद्धि','व्यतीपात','वरीयान','परिघ','शिव','सिद्ध','साध्य','शुभ','शुक्ल','ब्रह्म','ऐंद्र','वैधृति'];
@@ -660,7 +766,6 @@ function hinduMonth(date){
 }
 var RAS=['शुभ','सावधानी','शुभ','सावधानी','सावधानी','शुभ','शुभ','सावधानी','सावधानी','शुभ','शुभ','सावधानी'];
 var RTX=['मन में उत्साह और आत्मविश्वास रहेगा। भावनाएँ तेज़ रह सकती हैं, खान-पान और नींद का ध्यान रखें।','खर्च बढ़ सकता है और बातचीत में कठोरता से बचें। पैसे के लेन-देन में सावधानी रखें।','साहस और पुरुषार्थ बढ़ेगा। भाई-बहनों या पड़ोसियों से सहयोग मिल सकता है, छोटी यात्रा संभव है।','मन अशांत रह सकता है। घर, वाहन या माता से जुड़े मामलों में धैर्य रखें।','निर्णयों में जल्दबाज़ी न करें। बच्चों और पढ़ाई से जुड़ी चिंता रह सकती है, शांत रहकर काम करें।','विरोधी और रुकावटें कमज़ोर पड़ेंगी। कर्ज़ या पुराने काम निपटाने के लिए अच्छा दिन है।','साझेदारी और दांपत्य में सामंजस्य रहेगा। मेल-मुलाकात और व्यापारिक बातचीत लाभकारी रहेगी।','अनचाही रुकावट या देरी हो सकती है। स्वास्थ्य और वाहन चलाने में सावधानी रखें, बड़े फ़ैसले टालें।','भाग्य का साथ कम महसूस होगा। यात्रा में देरी और बड़ों से मतभेद संभव है, विनम्र रहें।','कार्यक्षेत्र में सफलता और मान-सम्मान के योग हैं। रुके हुए काम आगे बढ़ेंगे।','आय और मित्रों से लाभ के योग हैं। मनचाहे काम पूरे होने की संभावना है।','खर्च और भागदौड़ बढ़ेगी। नींद और स्वास्थ्य पर ध्यान दें, अनावश्यक खर्च से बचें।'];
-function obsOf(){return new Astronomy.Observer(parseFloat($('plat').value),parseFloat($('plon').value),0)}
 function vedic(obs,tz){
   var now=Date.now(),ev=[],s=new Date(now-40*3600000),k,rise,set;
   for(k=0;k<6;k++){
@@ -751,7 +856,7 @@ function runP(){
       }
       lrows.push([pS,sS,nr]);
       var lh=th(['लग्न','आरंभ','समाप्ति']);
-      lrows.forEach(function(x,ix){lh+=tr([RASHI[x[0]],ix===0?'सूर्योदय '+ft(sr,tz):fdt(new Date(x[1]),tz,base),ix===lrows.length-1?'सूर्योदय '+fdt(new Date(nr),tz,base):fdt(new Date(x[2]),tz,base)])});
+      lrows.forEach(function(x,ix){lh+=tr([RASHI[x[0]],ix===0?'सूर्योदय '+ft(sr,tz):fdt(new Date(x[1]),tz,base),ix===lrows.length-1?'सूर्योदय '+ft(new Date(nr),tz,base):fdt(new Date(x[2]),tz,base)])});
       $('tul').innerHTML=lh;
     }catch(e7){$('tul').innerHTML=''}
     var jn=th(['पच्चक्खाण','समय']);
@@ -762,7 +867,6 @@ function runP(){
     jn+=tr(['अवड्ढ (दिनमान का 3/4)',ft(sr+dl*3/4,tz)]);
     jn+=tr(['सूर्यास्त (चौविहार का समय)',ft(ss,tz)]);
     $('tjn').innerHTML=jn;
-    // rashifal from Moon transit
     var mend=endTime(srd,fR);
     $('rmeta').textContent='चंद्र '+RASHI[mr]+' राशि में'+(mend?' ('+fdt(mend,tz,base)+' तक, फिर '+RASHI[(mr+1)%12]+')':'')+'। हर राशि के लिए चंद्र की गिनती उसी राशि से की गई है। सामान्य संकेत हैं, आपकी कुंडली के हिसाब से अलग हो सकते हैं।';
     var rc='';
@@ -772,7 +876,6 @@ function runP(){
     $('pout').hidden=false;
   }catch(e){$('perr').textContent=e.message}
 }
-// vrat finder
 var VRAT=[
  ['एकादशी',[10,25],'sr'],['पूर्णिमा',[14],'ss'],['अमावस्या',[29],'aft'],['प्रदोष (त्रयोदशी)',[12,27],'ss60'],
  ['संकष्टी चतुर्थी',[18],'moon'],['मासिक शिवरात्रि',[28],'mid'],['दुर्गाष्टमी',[7],'noon'],['कालाष्टमी',[22],'mid'],['स्कंद षष्ठी',[5],'noon'],
@@ -781,6 +884,7 @@ var VRAT=[
 function runV(){
   $('verr').textContent='';
   try{
+    if(typeof Astronomy==='undefined')throw new Error('गणना लाइब्रेरी लोड नहीं हुई।');
     var dp=$('pd').value.split('-'),lat=parseFloat($('plat').value),lon=parseFloat($('plon').value),tz=parseFloat($('ptz').value);
     if(dp.length<3||isNaN(lat)||isNaN(lon)||isNaN(tz))throw new Error('ऊपर तारीख, अक्षांश, देशांतर और समय क्षेत्र भरें।');
     var v=VRAT[$('vt').value],Y=+dp[0],M=+dp[1],D=+dp[2],obs=new Astronomy.Observer(lat,lon,0),out=[],prev=-9,i;
@@ -812,10 +916,10 @@ function runV(){
     $('tvr').innerHTML=h;
   }catch(e){$('verr').textContent=e.message}
 }
-// shraddh
 function runS(){
   var o=$('sout');
   try{
+    if(typeof Astronomy==='undefined')throw new Error('गणना लाइब्रेरी लोड नहीं हुई।');
     var sd=$('sdt').value,st=$('stm').value||'12:00',tz=parseFloat($('ptz').value),lat=parseFloat($('plat').value),lon=parseFloat($('plon').value);
     if(!sd||isNaN(tz)||isNaN(lat)||isNaN(lon)){o.innerHTML='<p class="err">देहांत की तारीख और ऊपर का स्थान भरें।</p>';return}
     var d=sd.split('-'),t=st.split(':'),dd=new Date(Date.UTC(+d[0],+d[1]-1,+d[2],+t[0],+t[1])-tz*3600000);
@@ -839,12 +943,13 @@ function runS(){
   }catch(e){o.innerHTML='<p class="err">'+esc(e.message)+'</p>'}
 }
 
-// ---- calculators
+var calcId=0;
 function edge(fn,lo,hi){while(hi-lo>86400000){var m=(lo+hi)/2;if(fn(m))hi=m;else lo=m}return hi}
 function runC(){
   $('cerr').textContent='';
   try{
     if(typeof Astronomy==='undefined')throw new Error('गणना लाइब्रेरी लोड नहीं हुई।');
+    var myId=++calcId;
     var tz=parseFloat($('ctz').value),ds=$('cd').value.split('-'),ts=$('ct').value.split(':');
     if(ds.length<3||ts.length<2||isNaN(tz))throw new Error('तिथि, समय और समय क्षेत्र भरें।');
     var b=new Date(Date.UTC(+ds[0],+ds[1]-1,+ds[2],+ts[0],+ts[1])-tz*3600000),moon=sidLon('Moon',b),sun=sidLon('Sun',b);
@@ -860,6 +965,7 @@ function runC(){
       +extra+'<p id="csade">साढ़े साती की गणना हो रही है…</p><p id="csah">सहस्र चंद्रोदय की गणना हो रही है…</p>';
     $('cout').innerHTML=html;
     setTimeout(function(){
+      if(myId!==calcId)return;
       var step=20*86400000,inS=function(ms_){var sg=Math.floor(sidLon('Saturn',new Date(ms_))/30),d=(sg-ms+12)%12;return d===11||d===0||d===1};
       var base=b.getTime(),prev=inS(base),cur=prev?{s:base}:null,out=[],k,t,v;
       for(k=1;k<=1640;k++){
@@ -874,11 +980,12 @@ function runC(){
       var nowT=Date.now(),sh=th(['चरण','आरंभ','समाप्ति']);
       merged.forEach(function(o,i){var on=o.s<=nowT&&(!o.e||nowT<o.e);sh+=tr(['साढ़े साती '+(i+1),dstr(o.s,tz),o.e?dstr(o.e,tz):'-'],on?'now':'')});
       $('csade').innerHTML='<b>साढ़े साती (चंद्र राशि '+RASHI[ms]+' से, शनि के गोचर पर):</b><div class="tw"><table>'+sh+'</table></div>'+(merged.length?'':'जीवन के पहले 90 वर्ष में नहीं मिली।');
-      // sahasra chandrodaya, chunked so the page stays responsive
       var tcur=b.getTime(),cnt=0,lastF=null;
       var chunk=function(){
+        if(myId!==calcId)return;
         var end=Math.min(cnt+100,1000);
         for(;cnt<end;cnt++){var q=Astronomy.SearchMoonPhase(180,new Date(tcur),40);if(!q){cnt=1000;break}lastF=q.date.getTime();tcur=lastF+86400000}
+        if(myId!==calcId)return;
         if(cnt<1000){$('csah').textContent='सहस्र चंद्रोदय की गणना हो रही है… '+Math.round(cnt/10)+'%';setTimeout(chunk,0)}
         else if(lastF){var age=(lastF-b.getTime())/(365.2425*86400000);$('csah').innerHTML='<b>सहस्र चंद्रोदय:</b> जन्म के बाद 1000वीं पूर्णिमा '+dstr(lastF,tz)+' को होगी, तब आयु लगभग '+Math.floor(age)+' वर्ष '+Math.round((age-Math.floor(age))*12)+' महीने।'}
       };
@@ -887,7 +994,6 @@ function runC(){
   }catch(e){$('cerr').textContent=e.message}
 }
 
-// ---- festivals, pitru paksha, sankranti, planets, eclipses
 function ayOf(d){var T=(d.getTime()/86400000+2440587.5-2451545)/36525;return AY0+1.39688783*T+0.000307*T*T}
 function tauKind(k,sr,ss,obs,setDate){
   var dl=ss-sr;
@@ -937,7 +1043,6 @@ function stations(key,fromMs,days){
 }
 function fdtm(ms,tz){var x=new Date(ms+tz*3600000);return pad(x.getUTCDate())+'-'+pad(x.getUTCMonth()+1)+'-'+x.getUTCFullYear()+' '+pad(x.getUTCHours())+':'+pad(x.getUTCMinutes())}
 var PLN={Sun:'सूर्य',Mars:'मंगल',Mercury:'बुध',Venus:'शुक्र',Jupiter:'गुरु',Saturn:'शनि'};
-// [name, amanta month (Chaitra=0), tithi 0-29, sample time]
 var FEST=[
  ['उगादि और गुड़ी पड़वा',0,0,'sr'],['राम नवमी',0,8,'noon'],['हनुमान जयंती',0,14,'sr'],
  ['अक्षय तृतीया',1,2,'purv'],['बुद्ध पूर्णिमा',1,14,'ss'],['वट सावित्री व्रत (अमावस्या)',1,29,'aft'],
@@ -968,7 +1073,7 @@ function scanRules(rules,Y,M,D,N,obs){
   }
   return hits;
 }
-function panchInputs(errId){
+function panchInputs(){
   var dp=$('pd').value.split('-'),lat=parseFloat($('plat').value),lon=parseFloat($('plon').value),tz=parseFloat($('ptz').value);
   if(typeof Astronomy==='undefined')throw new Error('गणना लाइब्रेरी लोड नहीं हुई।');
   if(dp.length<3||isNaN(lat)||isNaN(lon)||isNaN(tz))throw new Error('ऊपर पंचांग में तारीख, स्थान और समय क्षेत्र भरें।');
@@ -1079,7 +1184,6 @@ function runQK(){
   $('out').scrollIntoView({behavior:'smooth',block:'start'});
 }
 
-// ---- wiring
 function fillCity(sel){CITIES.forEach(function(c,i){var o=document.createElement('option');o.value=i;o.textContent=c[0];sel.appendChild(o)});sel.value=0}
 var sel=$('city'),psel=$('pcity');
 fillCity(sel);fillCity(psel);
@@ -1103,11 +1207,27 @@ $('pgo').addEventListener('click',runPt);
 $('kgo').addEventListener('click',runK);
 $('ggo').addEventListener('click',runG);
 $('qk').addEventListener('click',runQK);
-document.querySelectorAll('.seg button').forEach(function(b){b.addEventListener('click',function(){cstyle=b.dataset.s;renderCharts()})});
+$('prbtn').addEventListener('click',function(){window.print()});
+document.querySelectorAll('.seg button[data-s]').forEach(function(b){b.addEventListener('click',function(){cstyle=b.dataset.s;renderCharts()})});
+
+var thbtn=$('thbtn'),root=document.documentElement;
+function applyTheme(t){
+  if(t==='dark'||t==='light')root.setAttribute('data-theme',t);
+  var isDark=root.getAttribute('data-theme')==='dark'||(!root.getAttribute('data-theme')&&window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches);
+  thbtn.textContent=isDark?'☀️':'🌙';
+}
+try{applyTheme(localStorage.getItem('jk_theme'))}catch(x){applyTheme(null)}
+thbtn.addEventListener('click',function(){
+  var isDark=root.getAttribute('data-theme')==='dark'||(!root.getAttribute('data-theme')&&window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches);
+  var next=isDark?'light':'dark';
+  applyTheme(next);
+  try{localStorage.setItem('jk_theme',next)}catch(x){}
+});
+
 var mb=$('mb'),menu=$('menu');
 mb.addEventListener('click',function(){var o=menu.hidden;menu.hidden=!o;mb.setAttribute('aria-expanded',String(o))});
 menu.addEventListener('click',function(e){if(e.target.tagName==='A'){menu.hidden=true;mb.setAttribute('aria-expanded','false')}});
-document.querySelectorAll('.copy').forEach(function(b){
+document.querySelectorAll('.copy[data-t]').forEach(function(b){
   b.addEventListener('click',function(){
     var el=$(b.dataset.t);
     var done=function(){b.textContent='कॉपी हो गया';setTimeout(function(){b.textContent='कॉपी'},1800)};
@@ -1119,4 +1239,4 @@ run();runM();runP();setTimeout(runV,300);setTimeout(runF,700);setTimeout(runPt,1
 })();
 </script>
 </body>
-</html>
+  </html>
